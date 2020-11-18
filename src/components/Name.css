@@ -1,0 +1,8 @@
+.container {
+    background-color: lightslategrey;
+    cursor: pointer;
+}
+
+.complete {
+    text-decoration: line-through;
+}

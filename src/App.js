@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Name from './components/name.js';
 
 function App() {
+  /* 
+  js comment
+  */
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      { /* html comment */ }
+      <h1 className="blue">
+        Antec Controls Secret Santa
+      </h1>
+      <Name 
+        person='Terra'
+        color='red'
+      />
+      <Name 
+        person='Charlie'
+        color='pink'
+      />
+     <Name 
+        person='Momo'
+        color='green'
+      />
     </div>
   );
 }
