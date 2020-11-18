@@ -10,19 +10,22 @@ function App() {
     <div className="App">
       { /* html comment */ }
       <h1 className="blue">
-        Antec Controls Secret Santa
+        Groceries for Ian
       </h1>
+      (my favourite derp)
+      
+      
       <Name 
-        person='Terra'
-        color='red'
+        person='Twizzlers'
+        /*color='red'*/ 
       />
       <Name 
-        person='Charlie'
-        color='pink'
+        person='Nibs'
+        /*color='pink'*/ 
       />
      <Name 
-        person='Momo'
-        color='green'
+        person='Black Licorice'
+        /*color='green'*/ 
       />
     </div>
   );

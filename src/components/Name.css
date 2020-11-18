@@ -1,8 +1,21 @@
 .container {
     background-color: lightslategrey;
+    color: red;
+}
+
+.container:hover {
     cursor: pointer;
+    font-weight: bold;
+    background-color: green;
 }
 
 .complete {
     text-decoration: line-through;
+    color: green;
+}
+
+.complete:hover {
+    cursor: pointer;
+    font-weight: bolder;
+    background-color: red;
 }
