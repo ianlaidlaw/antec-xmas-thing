@@ -1,31 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Name.css';
 
 function Name(props) {
 
-  function completeName() {
-    
-    let myContainer = document.getElementById(props.person);
-    
-    if (myContainer.className === 'container') {
-      myContainer.className='container complete';
+  let [ complete, setComplete ] = useState(false);
 
-    }
-      
-    else {
-      myContainer.className='container';
-    }
+  function completeName() {
+    setComplete(!complete);
+    props.onPress();
+  }
+
+  let myClass = "container";
+
+  if (complete === true) {
+    myClass += " complete";
   }
 
   return (
     <div 
       id={props.person}
-      className="container"
+      className={myClass}
       onClick={completeName}
     >
       <p style={{color: props.color}}>
         {props.person}
       </p>
+
+
+
     </div>
   )
 }
