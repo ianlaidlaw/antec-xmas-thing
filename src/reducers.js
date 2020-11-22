@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux';
-import appReducer from './app/reducer.js';
+import app from './states/app/reducer.js';
+import participants from './states/participants/reducer.js';
 
 const reducers = combineReducers({
-  app: appReducer,
+  app,
+  participants,
 })
 
 const store = createStore(reducers);

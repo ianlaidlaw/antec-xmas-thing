@@ -1,4 +1,4 @@
-export const testAction = 'TEST_ACTION';
+import { testAction } from './actions.js';
 
 const initialState = {
   view: null,
