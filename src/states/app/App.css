@@ -1,20 +1,4 @@
 .App {
-  background-color: lightblue;
-}
-
-h1 {
-  color: blue;
-}
-
-#my-kool-h3 {
-  color: red;
-}
-
-.five {
-  padding: 1px;
-  background-color: teal;
-}
-
-.even {
-  border: 2px solid magenta;
+  display: flex;
+  flex: 1;
 }

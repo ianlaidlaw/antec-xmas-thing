@@ -1,1 +1,1 @@
-export const testAction = 'TEST_ACTION';
+export const setCurrentView = 'APP_CURRENT_VIEW_SET';

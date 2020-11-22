@@ -1,12 +1,13 @@
-import { testAction } from './actions.js';
+import { Views } from '../../res/constants.js';
+import { setCurrentView } from './actions.js';
 
 const initialState = {
-  view: null,
+  view: Views.Splash,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case testAction: {
+    case setCurrentView: {
       return {
         ...state,
         view: action.payload,

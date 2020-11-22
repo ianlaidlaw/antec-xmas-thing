@@ -1,25 +1,26 @@
 import React, { useReducer } from 'react';
 import './App.css';
-import { testAction } from './actions';
 import { useSelector, useDispatch } from 'react-redux';
-import SplashScreen from '../../views/splash';
+import SplashScreen from '../../views/splashScreen';
+import { Views } from '../../res/constants';
+import PresentSelect from '../../views/presentSelect';
 
 function App() {
-  const appState = useSelector(({app}) => app);
-  const dispatch = useDispatch();
+  const { view } = useSelector(({app}) => app);
 
-  console.log({appState});
-
-  function doThing() {
-    dispatch({
-      type: testAction,
-      payload: 'wewewewew',
-    });
+  function renderMainView() {
+    switch(view) {
+      case Views.PresentSelect:
+        return <PresentSelect />;
+      case Views.Splash:
+      default:
+        return <SplashScreen />;
+    }
   }
   
   return (
     <div className="App">
-      <SplashScreen />
+      { renderMainView() }
     </div>
   );
 }
