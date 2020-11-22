@@ -1,5 +1,6 @@
 import React from 'react';
 import Participant from './Participant';
+import './ParticipantList.css';
 
 export function ParticipantList() {
   function getSampleParticipants() {
@@ -20,10 +21,8 @@ export function ParticipantList() {
   }
 
   return (
-    <div>
-      {
-        getSampleParticipants().map((x) => x)
-      }
+    <div id='participant-list-container'>
+      { getSampleParticipants().map((x) => x) }
     </div>
   )
 }
