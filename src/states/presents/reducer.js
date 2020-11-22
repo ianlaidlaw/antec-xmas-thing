@@ -1,11 +1,19 @@
-import { selectPresent } from './actions.js';
+import { setInitialPresents, selectPresent } from './actions.js';
 
 const initialState = {
   presents: [],
+  availablePresents: [],
+  selectedPresent: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case setInitialPresents: {
+      return {
+        ...state,
+        presents: [...action.payload],
+      };
+    }
     case selectPresent: {
       return {
         ...state,
@@ -15,6 +23,6 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default reducer;

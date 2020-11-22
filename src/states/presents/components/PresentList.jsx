@@ -1,28 +1,23 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Present from './Present.jsx';
 import './PresentList.css';
 
 export function PresentList() {
-  function getSamplePresents() {
-    return [
+  const { availablePresents } = useSelector((state) => state.presents);
+
+  function renderPresent(present) {
+    return (
       <Present
-        key='mcdonalds'
-        name='mcdonalds'
-      />,
-      <Present
-        key='buger king'
-        name='burger king'
-      />,
-      <Present
-        key='wendys'
-        name='wendys'
-      />,
-    ]
+        key={present}
+        name={present}
+      />
+    )
   }
 
   return (
     <div id='present-list-container'>
-      { getSamplePresents().map((x) => x) }
+      { availablePresents.map((x) => renderPresent(x)) }
     </div>
   )
 }

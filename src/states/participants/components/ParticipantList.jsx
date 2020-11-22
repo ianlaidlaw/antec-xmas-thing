@@ -1,28 +1,23 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Participant from './Participant.jsx';
 import './ParticipantList.css';
 
 export function ParticipantList() {
-  function getSampleParticipants() {
-    return [
+  const { availableParticipants } = useSelector((state) => state.participants);
+
+  function renderParticipant(participant) {
+    return (
       <Participant
-        key='momo'
-        name='momo'
-      />,
-      <Participant
-        key='terra'
-        name='terra'
-      />,
-      <Participant
-        key='misi'
-        name='misi'
-      />,
-    ];
+        key={participant}
+        name={participant}
+      />
+    );
   }
 
   return (
     <div id='participant-list-container'>
-      { getSampleParticipants().map((x) => x) }
+      { availableParticipants.map((x) => renderParticipant(x)) }
     </div>
   )
 }
