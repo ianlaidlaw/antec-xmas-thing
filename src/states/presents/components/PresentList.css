@@ -1,3 +1,7 @@
 #present-list-container {
   background-color: hotpink;
 }
+
+.disabled {
+  pointer-events: none;
+}

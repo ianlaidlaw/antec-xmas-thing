@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Present from './Present.jsx';
 import './PresentList.css';
 
-export function PresentList() {
+export function PresentList(props) {
   const { availablePresents } = useSelector((state) => state.presents);
 
   function renderPresent(present) {
@@ -15,8 +15,16 @@ export function PresentList() {
     )
   }
 
+  const { activeParticipant } = props;
+
+  let className = '';
+
+  if (!activeParticipant) {
+    className += 'disabled';
+  }
+
   return (
-    <div id='present-list-container'>
+    <div id='present-list-container' className={className}>
       { availablePresents.map((x) => renderPresent(x)) }
     </div>
   )

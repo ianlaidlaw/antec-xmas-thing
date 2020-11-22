@@ -3,7 +3,7 @@ import { setInitialPresents, selectPresent } from './actions.js';
 const initialState = {
   presents: [],
   availablePresents: [],
-  selectedPresent: null,
+  claimedPresents: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,12 +12,28 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         presents: [...action.payload],
+        availablePresents: [...action.payload],
       };
     }
     case selectPresent: {
+      // check if present is stolen or not
+      let { availablePresents, claimedPresents } = state;
+      let presentName = action.payload;
+      let newAvailablePresents = [];
+      let newClaimedPresents = [];
+
+      if (availablePresents.includes(presentName)) {
+        newAvailablePresents = availablePresents.filter((x) => x !== presentName);
+        newClaimedPresents = [...claimedPresents, presentName];
+      } else {
+        newAvailablePresents = [...availablePresents];
+        newClaimedPresents = [...claimedPresents];
+      }
+
       return {
         ...state,
-        selectedPresent: action.payload,
+        availablePresents: [...newAvailablePresents],
+        claimedPresents: [...newClaimedPresents],
       };
     }
     default:

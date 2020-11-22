@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
     case setAvailableParticipants: {
       return {
         ...state,
-        availableParticipants: [...state.availableParticipants],
+        availableParticipants: [...action.payload],
       }
     }
     case setCompletedParticipants: {
