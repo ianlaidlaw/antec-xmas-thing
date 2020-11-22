@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAvailableParticipants, setCompletedParticipants } from '../states/participants/actions.js';
+import { setAvailableParticipants } from '../states/participants/actions.js';
 import ParticipantList from '../states/participants/components/ParticipantList.jsx';
 import ClaimedPresentList from '../states/presents/components/ClaimedPresentList.jsx';
 import PresentList from '../states/presents/components/PresentList.jsx';
