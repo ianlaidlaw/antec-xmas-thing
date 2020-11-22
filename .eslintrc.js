@@ -14,6 +14,7 @@ module.exports = {
     'react',
   ],
   rules: {
-    
+    "semi": ['warn', 'always'],
+    'quotes': ['warn', 'single']
   },
 };

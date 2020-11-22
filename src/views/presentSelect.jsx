@@ -1,5 +1,5 @@
 import React from 'react';
-import ParticipantList from '../states/participants/components/ParticipantList';
+import ParticipantList from '../states/participants/components/ParticipantList.jsx';
 import PresentList from '../states/presents/components/PresentList.jsx';
 import './PresentSelect.css';
 

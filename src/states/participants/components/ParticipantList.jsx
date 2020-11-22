@@ -1,5 +1,5 @@
 import React from 'react';
-import Participant from './Participant';
+import Participant from './Participant.jsx';
 import './ParticipantList.css';
 
 export function ParticipantList() {
@@ -17,7 +17,7 @@ export function ParticipantList() {
         key='misi'
         name='misi'
       />,
-    ]
+    ];
   }
 
   return (

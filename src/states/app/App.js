@@ -1,9 +1,9 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import './App.css';
-import { useSelector, useDispatch } from 'react-redux';
-import SplashScreen from '../../views/splashScreen';
-import { Views } from '../../res/constants';
-import PresentSelect from '../../views/presentSelect';
+import { useSelector } from 'react-redux';
+import SplashScreen from '../../views/splashScreen.jsx';
+import { Views } from '../../res/constants.js';
+import PresentSelect from '../../views/PresentSelect.jsx';
 
 function App() {
   const { view } = useSelector(({app}) => app);
