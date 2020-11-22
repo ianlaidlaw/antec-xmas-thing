@@ -10,7 +10,9 @@ function Present(props) {
     dispatch({
       type: selectPresentAction,
       payload: props.name,
-    })
+    });
+
+    props.onSelect(props.name);
   }
 
   return (

@@ -1,7 +1,8 @@
-import { setActiveParticipant } from './actions.js';
+import { setActiveParticipant, setStolenPresents } from './actions.js';
 
 const initialState = {
   activeParticipant: null,
+  stolenPresents: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -10,7 +11,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeParticipant: action.payload,
+        stolenPresents: [],
       };
+    }
+    case setStolenPresents: {
+      return {
+        ...state,
+        stolenPresents: [...state.stolenPresents, action.payload],
+      }
     }
     default:
       return state;
