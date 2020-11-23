@@ -16,10 +16,13 @@ export function ParticipantList() {
   }
 
   return (
-    <div id='participant-list-container'>
-      { availableParticipants.map((x) => renderParticipant(x)) }
+    <div>
+      <h3>Remaining Participants</h3>
+      <div id='participant-list-container'>
+        { availableParticipants.map((x) => renderParticipant(x)) }
+      </div>
     </div>
-  )
+  );
 }
 
 export default ParticipantList;

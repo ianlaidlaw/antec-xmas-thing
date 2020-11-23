@@ -1,14 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCompletedParticipants } from '../../participants/actions.js';
-import { setActiveParticipant } from '../../round/actions.js';
+import { resetStolenPresents, setActiveParticipant } from '../../round/actions.js';
 import Present from './Present.jsx';
 import './PresentList.css';
 
 export function PresentList(props) {
   const dispatch = useDispatch();
   const { 
-    presents:{ availablePresents },
+    presents: { availablePresents },
+    participants: { completedParticipants },
   } = useSelector((state) => state);
 
   const { activeParticipant } = props;
@@ -28,8 +29,12 @@ export function PresentList(props) {
 
     dispatch({
       type: setCompletedParticipants,
-      payload: completedParticipant,
-    })
+      payload: [...completedParticipants, completedParticipant],
+    });
+
+    dispatch({
+      type: resetStolenPresents,
+    });
   }
 
   function renderPresent(present) {
@@ -39,7 +44,7 @@ export function PresentList(props) {
         name={present}
         onSelect={claimPresent}
       />
-    )
+    );
   }
 
   let className = '';
@@ -49,10 +54,13 @@ export function PresentList(props) {
   }
 
   return (
-    <div id='present-list-container' className={className}>
-      { availablePresents.map(renderPresent) }
+    <div>
+      <h3>Available Presents</h3>
+      <div id='present-list-container' className={className}>
+        { availablePresents.map(renderPresent) }
+      </div>
     </div>
-  )
+  );
 }
 
 export default PresentList;

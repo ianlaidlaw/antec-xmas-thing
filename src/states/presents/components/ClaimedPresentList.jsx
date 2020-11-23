@@ -2,7 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Present from './Present.jsx';
 import './ClaimedPresentList.css';
-import { setStolenPresents } from '../../round/actions.js';
+import { setStolenPresents, setActiveParticipant } from '../../round/actions.js';
+import { setCompletedParticipants } from '../../participants/actions.js';
 
 function ClaimedPresentList(props) {
   const dispatch = useDispatch();
@@ -16,12 +17,23 @@ function ClaimedPresentList(props) {
     // get the participant from the stolen present
     const targetParticipant = completedParticipants.find((x) => x.selected === present);
 
-  console.log(targetParticipant);
-
-
-    // remove the completed participant that
+    // remove the completed participant that had the present
+    const newCompletedParticipants = completedParticipants.filter((x) => x.selected !== present);
+    newCompletedParticipants.push({
+      name: activeParticipant,
+      selected: present
+    });
 
     // complete the active participant
+    dispatch({
+      type: setCompletedParticipants,
+      payload: newCompletedParticipants,
+    });
+
+    dispatch({
+      type: setActiveParticipant,
+      payload: targetParticipant.name,
+    });
 
     // add to the stolen presents
     dispatch({
@@ -37,21 +49,39 @@ function ClaimedPresentList(props) {
       isStolenThisRound = true;
     }
 
-    // TODO: div not needed
+    let className = '';
+
+    if (isStolenThisRound) {
+      className = 'disabled';
+    }
+
+    const owner = completedParticipants.find((x) => x.selected === present);
+
+    // TODO: div not needed?
     return (
-      <div key={`claimedPresent-${present}`}>
+      <div key={`claimedPresent-${present}`} className={className}>
         <Present
           name={present}
           onSelect={stealPresent}
+          owner={owner.name}
+          stolen={isStolenThisRound}
         />
-        { isStolenThisRound && <span>STOLEN!</span> }
       </div>
-    )
+    );
+  }
+
+  let className = '';
+
+  if (!activeParticipant) {
+    className += 'disabled';
   }
 
   return (
-    <div id='claimed-presents-container'>
-      { claimedPresents.map(renderClaimedPresent) }
+    <div>
+      <h3>Claimed Presents</h3>
+      <div id='claimed-presents-container' className={className}>
+        { claimedPresents.map(renderClaimedPresent) }
+      </div>
     </div>
   );
 }

@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
     case setCompletedParticipants: {
       return {
         ...state,
-        completedParticipants: [...state.completedParticipants, action.payload],
+        completedParticipants: [...action.payload],
       };
     }
     default:

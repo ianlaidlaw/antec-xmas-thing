@@ -4,7 +4,7 @@ import { setAvailableParticipants } from '../states/participants/actions.js';
 import ParticipantList from '../states/participants/components/ParticipantList.jsx';
 import ClaimedPresentList from '../states/presents/components/ClaimedPresentList.jsx';
 import PresentList from '../states/presents/components/PresentList.jsx';
-import { setActiveParticipant } from '../states/round/actions.js';
+import { resetStolenPresents, setActiveParticipant } from '../states/round/actions.js';
 import './PresentSelect.css';
 
 function PresentSelect() {
@@ -33,18 +33,22 @@ function PresentSelect() {
       type: setActiveParticipant,
       payload: randomlySelectedParticipant,
     });
+
+    dispatch({
+      type: resetStolenPresents,
+    });
   }
 
   function renderActiveParticipant() {
     return (
-      <span>Active Participant: {activeParticipant}</span>
-    )
+      <span> Active Participant: <b>{activeParticipant}</b></span>
+    );
   }
 
   return (
     <div id='present-select-container'>
       <h1>This is the present select screen</h1>
-      <button onClick={startRound}>Start Round</button>
+      <button disabled={!!activeParticipant} onClick={startRound}>Start Round</button>
       { renderActiveParticipant() }
       <ParticipantList 
         activeParticipant={activeParticipant}

@@ -15,9 +15,31 @@ function Present(props) {
     props.onSelect(props.name);
   }
 
+  function renderOwner() {
+    if (props.owner) {
+      return (
+        <span> - {props.owner}</span>
+      );
+    }
+
+    return null;
+  }
+
+  function renderStolen() {
+    if (props.stolen) {
+      return (
+        <span> - STOLEN THIS ROUND</span>
+      );
+    }
+
+    return null;
+  }
+
   return (
     <div className='present-container' onClick={selectPresent}>
       { props.name }
+      { renderOwner() }
+      { renderStolen() }
     </div>
   );
 }

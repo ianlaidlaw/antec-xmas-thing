@@ -1,3 +1,7 @@
 #claimed-presents-container {
-  background-color: mediumblue;
+  background-color: lemonchiffon;
+}
+
+.disabled {
+  pointer-events: none;
 }
