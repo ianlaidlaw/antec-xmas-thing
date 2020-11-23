@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { useSelector } from 'react-redux';
-import SplashScreen from '../../views/splashScreen.jsx';
+import SplashScreen from '../../views/SplashScreen.jsx';
 import { Views } from '../../res/constants.js';
 import PresentSelect from '../../views/PresentSelect.jsx';
 

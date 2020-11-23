@@ -11,10 +11,15 @@ export function PresentList(props) {
     presents:{ availablePresents },
   } = useSelector((state) => state);
 
-  function claimPresent(present) {
-    console.log('claim');
+  const { activeParticipant } = props;
 
+  function claimPresent(present) {
     // start the animation?
+
+    const completedParticipant = {
+      name: activeParticipant,
+      selected: present,
+    };
 
     dispatch({
       type: setActiveParticipant,
@@ -23,7 +28,7 @@ export function PresentList(props) {
 
     dispatch({
       type: setCompletedParticipants,
-      payload: 'weee',
+      payload: completedParticipant,
     })
   }
 
@@ -37,8 +42,6 @@ export function PresentList(props) {
     )
   }
 
-  const { activeParticipant } = props;
-
   let className = '';
 
   if (!activeParticipant) {
@@ -47,7 +50,7 @@ export function PresentList(props) {
 
   return (
     <div id='present-list-container' className={className}>
-      { availablePresents.map((x) => renderPresent(x)) }
+      { availablePresents.map(renderPresent) }
     </div>
   )
 }

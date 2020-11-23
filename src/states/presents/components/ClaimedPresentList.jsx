@@ -4,12 +4,26 @@ import Present from './Present.jsx';
 import './ClaimedPresentList.css';
 import { setStolenPresents } from '../../round/actions.js';
 
-function ClaimedPresentList() {
+function ClaimedPresentList(props) {
   const dispatch = useDispatch();
   const { claimedPresents } = useSelector((state) => state.presents);
   const { stolenPresents } = useSelector((state) => state.round);
+  const { completedParticipants } = useSelector((state) => state.participants);
+
+  const { activeParticipant } = props;
 
   function stealPresent(present) {
+    // get the participant from the stolen present
+    const targetParticipant = completedParticipants.find((x) => x.selected === present);
+
+  console.log(targetParticipant);
+
+
+    // remove the completed participant that
+
+    // complete the active participant
+
+    // add to the stolen presents
     dispatch({
       type: setStolenPresents,
       payload: present,
@@ -17,8 +31,6 @@ function ClaimedPresentList() {
   }
 
   function renderClaimedPresent(present) {
-    console.log({stolenPresents});
-
     let isStolenThisRound = false;
 
     if (stolenPresents.includes(present)) {
