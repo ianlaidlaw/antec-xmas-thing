@@ -47,7 +47,7 @@ function PresentSelect() {
 
   return (
     <div id='present-select-container'>
-      <h1>This is the present select screen</h1>
+      <h1>2020 Gift Exchange \O/</h1>
       <button disabled={!!activeParticipant} onClick={startRound}>Start Round</button>
       { renderActiveParticipant() }
       <ParticipantList 

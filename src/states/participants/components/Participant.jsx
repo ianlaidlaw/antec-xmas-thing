@@ -7,7 +7,7 @@ function Participant(props) {
     <div>
       { props.name }
     </div>
-  )
+  );
 }
 
 export default Participant;

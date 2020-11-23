@@ -42,7 +42,7 @@ function SplashScreen() {
 
   return (
     <div id='splash-screen-container'>
-      <h1>Antec Controls Secret Santa</h1>
+      <h1>Antec Controls Gift Exchange</h1>
       <span>Made by a cool guy</span>
         <FilePicker
           extensions={['txt']}

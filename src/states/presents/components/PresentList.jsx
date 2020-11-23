@@ -43,6 +43,7 @@ export function PresentList(props) {
         key={present}
         name={present}
         onSelect={claimPresent}
+        hideName
       />
     );
   }

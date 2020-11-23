@@ -1,2 +1,2 @@
-Momo,Terra,Stevie,Cami,Misi,Ian,Charlie
-McDonalds,Burger King,Pet Land,Wendy's,Safeway,Sobeys,LC
+Momo,Terra,Stevie,Cami,Misi,Ian,Charlie,Christine,Mike,Nicole
+McDonalds,Burger King,PetLand,Amazon,Safeway,Sobeys,LC,Bike Shop,Apple,Tinker Town

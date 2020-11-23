@@ -37,7 +37,7 @@ function Present(props) {
 
   return (
     <div className='present-container' onClick={selectPresent}>
-      { props.name }
+      { props.hideName ? <span>PICK ME!</span> : props.name }
       { renderOwner() }
       { renderStolen() }
     </div>

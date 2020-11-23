@@ -17,13 +17,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         stolenPresents: [...state.stolenPresents, action.payload],
-      }
+      };
     }
     case resetStolenPresents: {
       return {
         ...state,
         stolenPresents: [],
-      }
+      };
     }
     default:
       return state;
