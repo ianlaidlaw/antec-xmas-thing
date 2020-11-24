@@ -6,7 +6,7 @@ import './Present.css';
 type Props = {
   name: string,
   owner?: string,
-  stolen: boolean,
+  stolen?: boolean,
   hideName: boolean,
   onSelect: (name: string) => void,
 }

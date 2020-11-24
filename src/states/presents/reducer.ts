@@ -1,4 +1,11 @@
+import { ActionType } from '../../res/types.js';
 import { setInitialPresents, selectPresent } from './actions.js';
+
+export type reducerState = {
+  presents: string[],
+  availablePresents: string[],
+  claimedPresents: string[],
+};
 
 const initialState = {
   presents: [],
@@ -6,7 +13,7 @@ const initialState = {
   claimedPresents: [],
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state: reducerState = initialState, action: ActionType) => {
   switch (action.type) {
     case setInitialPresents: {
       return {

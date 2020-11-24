@@ -1,8 +1,19 @@
+import { ActionType } from '../../res/types.js';
 import { 
   setInitialParticipants, 
   setAvailableParticipants,
   setCompletedParticipants,
 } from './actions.js';
+
+export type reducerState = {
+  participants: string[],
+  availableParticipants: string[],
+  // TODO: extract to own type
+  completedParticipants: {
+    name: string,
+    present: string,
+  }[],
+};
 
 const initialState = {
   participants: [],
@@ -10,7 +21,7 @@ const initialState = {
   completedParticipants: [],
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state: reducerState = initialState, action: ActionType) => {
   switch (action.type) {
     case setInitialParticipants: {
       return {

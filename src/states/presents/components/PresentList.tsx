@@ -2,19 +2,24 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCompletedParticipants } from '../../participants/actions.js';
 import { resetStolenPresents, setActiveParticipant } from '../../round/actions.js';
-import Present from './Present.tsx';
+import Present from './Present';
 import './PresentList.css';
+import type { reducerState } from '../../../reducers';
 
-export function PresentList(props) {
+type Props = {
+  activeParticipant: string,
+};
+
+export function PresentList(props: Props) {
   const dispatch = useDispatch();
   const { 
     presents: { availablePresents },
     participants: { completedParticipants },
-  } = useSelector((state) => state);
+  } = useSelector((state: reducerState) => state);
 
   const { activeParticipant } = props;
 
-  function claimPresent(present) {
+  function claimPresent(present: string) {
     // start the animation?
 
     const completedParticipant = {
@@ -37,7 +42,7 @@ export function PresentList(props) {
     });
   }
 
-  function renderPresent(present) {
+  function renderPresent(present: string) {
     return (
       <Present
         key={present}

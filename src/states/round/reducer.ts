@@ -1,11 +1,21 @@
-import { setActiveParticipant, setStolenPresents, resetStolenPresents } from './actions.js';
+import { ActionType } from '../../res/types.js';
+import { 
+  setActiveParticipant, 
+  setStolenPresents, 
+  resetStolenPresents 
+} from './actions.js';
+
+export type reducerState = {
+  activeParticipant: string | null,
+  stolenPresents: string[],
+};
 
 const initialState = {
   activeParticipant: null,
   stolenPresents: [],
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state: reducerState = initialState, action: ActionType) => {
   switch (action.type) {
     case setActiveParticipant: {
       return {

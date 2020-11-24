@@ -1,11 +1,16 @@
 import { Views } from '../../res/constants.js';
+import { ActionType } from '../../res/types.js';
 import { setCurrentView } from './actions.js';
+
+export type reducerState = {
+  view: string,
+};
 
 const initialState = {
   view: Views.Splash,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state: reducerState = initialState, action: ActionType) => {
   switch (action.type) {
     case setCurrentView: {
       return {
