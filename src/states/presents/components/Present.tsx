@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { selectPresent as selectPresentAction } from '../actions.js';
+import { selectPresent as selectPresentAction } from '../actions';
 import './Present.css';
 
 type Props = {
   name: string,
-  owner?: string,
-  stolen?: boolean,
+  owner?: string | null | undefined,
+  stolen: boolean,
   hideName: boolean,
   onSelect: (name: string) => void,
 }

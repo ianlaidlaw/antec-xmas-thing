@@ -4,7 +4,7 @@ import participants, { reducerState as participantsReducerState } from './states
 import presents, { reducerState as presentsReducerState } from './states/presents/reducer';
 import round, { reducerState as roundReducerState } from './states/round/reducer';
 
-export type reducerState = ({
+export type ReducerCombinedState = ({
   app: appReducerState,
   participants: participantsReducerState,
   presents: presentsReducerState,

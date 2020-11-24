@@ -1,15 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAvailableParticipants } from '../states/participants/actions.js';
-import ParticipantList from '../states/participants/components/ParticipantList.jsx';
-import ClaimedPresentList from '../states/presents/components/ClaimedPresentList.jsx';
-import PresentList from '../states/presents/components/PresentList.tsx';
-import { resetStolenPresents, setActiveParticipant } from '../states/round/actions.js';
+import { setAvailableParticipants } from '../states/participants/actions';
+import ParticipantList from '../states/participants/components/ParticipantList';
+import ClaimedPresentList from '../states/presents/components/ClaimedPresentList';
+import PresentList from '../states/presents/components/PresentList';
+import { resetStolenPresents, setActiveParticipant } from '../states/round/actions';
 import './PresentSelect.css';
+import type { ReducerCombinedState } from '../reducers'
 
 function PresentSelect() {
   const dispatch = useDispatch();
-  const state = useSelector(state => state);
+  const state = useSelector((state: ReducerCombinedState) => state);
   const { activeParticipant } = state.round;
 
   console.log({state});
@@ -51,7 +52,7 @@ function PresentSelect() {
       <button disabled={!!activeParticipant} onClick={startRound}>Start Round</button>
       { renderActiveParticipant() }
       <ParticipantList 
-        activeParticipant={activeParticipant}
+        // activeParticipant={activeParticipant}
       />
       <PresentList 
         activeParticipant={activeParticipant}

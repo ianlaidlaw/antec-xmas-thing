@@ -1,5 +1,5 @@
 import { ActionType } from '../../res/types.js';
-import { setInitialPresents, selectPresent } from './actions.js';
+import { setInitialPresents, selectPresent } from './actions';
 
 export type reducerState = {
   presents: string[],

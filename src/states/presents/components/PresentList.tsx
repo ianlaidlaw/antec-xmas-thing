@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCompletedParticipants } from '../../participants/actions.js';
-import { resetStolenPresents, setActiveParticipant } from '../../round/actions.js';
+import { setCompletedParticipants } from '../../participants/actions';
+import { resetStolenPresents, setActiveParticipant } from '../../round/actions';
 import Present from './Present';
 import './PresentList.css';
-import type { reducerState } from '../../../reducers';
+import type { ReducerCombinedState } from '../../../reducers';
 
 type Props = {
-  activeParticipant: string,
+  activeParticipant: string | null,
 };
 
 export function PresentList(props: Props) {
@@ -15,7 +15,7 @@ export function PresentList(props: Props) {
   const { 
     presents: { availablePresents },
     participants: { completedParticipants },
-  } = useSelector((state: reducerState) => state);
+  } = useSelector((state: ReducerCombinedState) => state);
 
   const { activeParticipant } = props;
 
@@ -49,6 +49,7 @@ export function PresentList(props: Props) {
         name={present}
         onSelect={claimPresent}
         hideName
+        stolen={false}
       />
     );
   }

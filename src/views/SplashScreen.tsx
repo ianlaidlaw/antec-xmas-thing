@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+// @ts-ignore
 import { FilePicker } from 'react-file-picker';
 import './SplashScreen.css';
-import { setCurrentView } from '../states/app/actions.js';
+import { setCurrentView } from '../states/app/actions';
 import { Views } from '../res/constants.js';
 import { setInitialParticipants } from '../states/participants/actions';
 import { setInitialPresents } from '../states/presents/actions';
@@ -10,7 +11,7 @@ import { setInitialPresents } from '../states/presents/actions';
 function SplashScreen() {
   const dispatch = useDispatch();
 
-  function onGetStartedClick(file) {
+  function onGetStartedClick(file: any) {
     readFile(file);
 
     const action = {
@@ -21,7 +22,7 @@ function SplashScreen() {
     dispatch(action);
   }
 
-  async function readFile(file) {
+  async function readFile(file: any) {
     const text = await file.text();
 
     const lines = text.split('\n');

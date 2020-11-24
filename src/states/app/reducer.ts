@@ -1,6 +1,6 @@
 import { Views } from '../../res/constants.js';
 import { ActionType } from '../../res/types.js';
-import { setCurrentView } from './actions.js';
+import { setCurrentView } from './actions';
 
 export type reducerState = {
   view: string,

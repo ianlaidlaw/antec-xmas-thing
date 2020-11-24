@@ -1,24 +1,33 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Present from './Present.tsx';
+import Present from './Present';
 import './ClaimedPresentList.css';
-import { setStolenPresents, setActiveParticipant } from '../../round/actions.js';
-import { setCompletedParticipants } from '../../participants/actions.js';
+import { setStolenPresents, setActiveParticipant } from '../../round/actions';
+import { setCompletedParticipants } from '../../participants/actions';
+import type { ReducerCombinedState } from '../../../reducers';
+import type { CompletedParticipant } from '../../participants/types';
 
-function ClaimedPresentList(props) {
+type Props = {
+  activeParticipant: string | null,
+};
+
+function ClaimedPresentList(props: Props) {
   const dispatch = useDispatch();
-  const { claimedPresents } = useSelector((state) => state.presents);
-  const { stolenPresents } = useSelector((state) => state.round);
-  const { completedParticipants } = useSelector((state) => state.participants);
+
+  const { presents, round, participants } = useSelector((state: ReducerCombinedState) => state);
+
+  const { claimedPresents } = presents;
+  const { stolenPresents } = round;
+  const { completedParticipants } = participants;
 
   const { activeParticipant } = props;
 
-  function stealPresent(present) {
+  function stealPresent(present: string) {
     // get the participant from the stolen present
     const targetParticipant = completedParticipants.find((x) => x.selected === present);
 
     // remove the completed participant that had the present
-    const newCompletedParticipants = completedParticipants.filter((x) => x.selected !== present);
+    const newCompletedParticipants = completedParticipants.filter((x: CompletedParticipant) => x.selected !== present);
     newCompletedParticipants.push({
       name: activeParticipant,
       selected: present
@@ -32,7 +41,7 @@ function ClaimedPresentList(props) {
 
     dispatch({
       type: setActiveParticipant,
-      payload: targetParticipant.name,
+      payload: targetParticipant?.name,
     });
 
     // add to the stolen presents
@@ -42,7 +51,7 @@ function ClaimedPresentList(props) {
     });
   }
 
-  function renderClaimedPresent(present) {
+  function renderClaimedPresent(present: string) {
     let isStolenThisRound = false;
 
     if (stolenPresents.includes(present)) {
@@ -63,8 +72,9 @@ function ClaimedPresentList(props) {
         <Present
           name={present}
           onSelect={stealPresent}
-          owner={owner.name}
+          owner={owner?.name}
           stolen={isStolenThisRound}
+          hideName={false}
         />
       </div>
     );

@@ -3,7 +3,7 @@ import {
   setActiveParticipant, 
   setStolenPresents, 
   resetStolenPresents 
-} from './actions.js';
+} from './actions';
 
 export type reducerState = {
   activeParticipant: string | null,
