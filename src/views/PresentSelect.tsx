@@ -6,7 +6,7 @@ import ClaimedPresentList from '../states/presents/components/ClaimedPresentList
 import PresentList from '../states/presents/components/PresentList';
 import { resetStolenPresents, setActiveParticipant } from '../states/round/actions';
 import './PresentSelect.css';
-import type { ReducerCombinedState } from '../reducers'
+import type { ReducerCombinedState } from '../reducers';
 
 function PresentSelect() {
   const dispatch = useDispatch();
@@ -51,9 +51,7 @@ function PresentSelect() {
       <h1>2020 Gift Exchange \O/</h1>
       <button disabled={!!activeParticipant} onClick={startRound}>Start Round</button>
       { renderActiveParticipant() }
-      <ParticipantList 
-        // activeParticipant={activeParticipant}
-      />
+      <ParticipantList />
       <PresentList 
         activeParticipant={activeParticipant}
       />

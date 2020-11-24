@@ -1,8 +1,10 @@
 import React from 'react';
 
-function Participant(props) {
+type Props = {
+  name: string,
+};
 
-
+function Participant(props: Props) {
   return (
     <div>
       { props.name }

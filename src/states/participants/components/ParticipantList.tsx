@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Participant from './Participant.jsx';
+import Participant from './Participant';
 import './ParticipantList.css';
+import type { ReducerCombinedState } from '../../../reducers.js';
 
 export function ParticipantList() {
-  const { availableParticipants } = useSelector((state) => state.participants);
+  const { availableParticipants } = useSelector(({participants}: ReducerCombinedState) => participants);
 
-  function renderParticipant(participant) {
+  function renderParticipant(participant: string) {
     return (
       <Participant
         key={participant}
@@ -19,7 +20,7 @@ export function ParticipantList() {
     <div>
       <h3>Remaining Participants</h3>
       <div id='participant-list-container'>
-        { availableParticipants.map((x) => renderParticipant(x)) }
+        { availableParticipants.map(renderParticipant) }
       </div>
     </div>
   );
