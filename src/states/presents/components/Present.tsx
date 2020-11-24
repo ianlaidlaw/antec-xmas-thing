@@ -3,7 +3,15 @@ import { useDispatch } from 'react-redux';
 import { selectPresent as selectPresentAction } from '../actions.js';
 import './Present.css';
 
-function Present(props) {
+type Props = {
+  name: string,
+  owner?: string,
+  stolen: boolean,
+  hideName: boolean,
+  onSelect: (name: string) => void,
+}
+
+function Present(props: Props) {
   const dispatch = useDispatch();
 
   function selectPresent() {

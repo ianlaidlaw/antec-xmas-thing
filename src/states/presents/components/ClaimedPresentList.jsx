@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Present from './Present.jsx';
+import Present from './Present.tsx';
 import './ClaimedPresentList.css';
 import { setStolenPresents, setActiveParticipant } from '../../round/actions.js';
 import { setCompletedParticipants } from '../../participants/actions.js';

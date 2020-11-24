@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCompletedParticipants } from '../../participants/actions.js';
 import { resetStolenPresents, setActiveParticipant } from '../../round/actions.js';
-import Present from './Present.jsx';
+import Present from './Present.tsx';
 import './PresentList.css';
 
 export function PresentList(props) {
