@@ -3,6 +3,7 @@ import {
   setInitialParticipants, 
   setAvailableParticipants,
   setCompletedParticipants,
+  setFirstParticipant,
 } from './actions';
 import type { CompletedParticipant } from './types.js';
 
@@ -10,12 +11,14 @@ export type reducerState = {
   participants: string[],
   availableParticipants: string[],
   completedParticipants: CompletedParticipant[],
+  firstParticipant: null,
 };
 
 const initialState = {
   participants: [],
   availableParticipants: [],
   completedParticipants: [],
+  firstParticipant: null,
 };
 
 const reducer = (state: reducerState = initialState, action: ActionType) => {
@@ -37,6 +40,12 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
       return {
         ...state,
         completedParticipants: [...action.payload],
+      };
+    }
+    case setFirstParticipant: {
+      return {
+        ...state,
+        firstParticipant: action.payload,
       };
     }
     default:

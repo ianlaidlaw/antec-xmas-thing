@@ -2,17 +2,20 @@ import { ActionType } from '../../res/types.js';
 import { 
   setActiveParticipant, 
   setStolenPresents, 
-  resetStolenPresents 
+  resetStolenPresents, 
+  setIsFinalRound,
 } from './actions';
 
 export type reducerState = {
   activeParticipant: string | null,
   stolenPresents: string[],
+  isFinalRound: boolean,
 };
 
 const initialState = {
   activeParticipant: null,
   stolenPresents: [],
+  isFinalRound: false,
 };
 
 const reducer = (state: reducerState = initialState, action: ActionType) => {
@@ -34,6 +37,12 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
         ...state,
         stolenPresents: [],
       };
+    }
+    case setIsFinalRound: {
+      return {
+        ...state,
+        isFinalRound: true,
+      }
     }
     default:
       return state;
