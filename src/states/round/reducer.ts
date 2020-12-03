@@ -4,18 +4,21 @@ import {
   setStolenPresents, 
   resetStolenPresents, 
   setIsFinalRound,
+  setIsRandomizing,
 } from './actions';
 
 export type reducerState = {
   activeParticipant: string | null,
   stolenPresents: string[],
   isFinalRound: boolean,
+  isRandomizing: boolean,
 };
 
 const initialState = {
   activeParticipant: null,
   stolenPresents: [],
   isFinalRound: false,
+  isRandomizing: false,
 };
 
 const reducer = (state: reducerState = initialState, action: ActionType) => {
@@ -42,7 +45,13 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
       return {
         ...state,
         isFinalRound: true,
-      }
+      };
+    }
+    case setIsRandomizing: {
+      return {
+        ...state,
+        isRandomizing: action.payload,
+      };
     }
     default:
       return state;

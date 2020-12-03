@@ -5,3 +5,5 @@ export const setStolenPresents = 'STOLEN_PRESENTS_SET';
 export const resetStolenPresents = 'STOLEN_PRESENTS_RESET';
 
 export const setIsFinalRound = 'FINAL_ROUND_SET';
+
+export const setIsRandomizing = 'IS_RANDOMIZING_SET';
