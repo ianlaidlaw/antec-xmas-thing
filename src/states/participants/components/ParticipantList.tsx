@@ -9,21 +9,21 @@ export function ParticipantList() {
   const { isRandomizing } = useSelector(({round}: ReducerCombinedState) => round);
   const [ glowIndex, setGlowIndex ] = useState(null);
 
-  console.log(isRandomizing);
-
   function renderParticipant(participant: string, index: number) {
     return (
-      <Participant
-        key={participant}
-        name={participant}
-        isHighlighted={index === glowIndex}
-      />
+      <div className='participant-container'>
+        <Participant
+          key={participant}
+          name={participant}
+          isHighlighted={index === glowIndex}
+        />
+      </div>
     );
   }
 
   return (
-    <div>
-      <h3>Remaining Participants</h3>
+    <div id='participant-list'>
+      <h3 className='title'>Remaining Participants</h3>
       <div id='participant-list-container'>
         { availableParticipants.map((x, index) => renderParticipant(x, index)) }
       </div>

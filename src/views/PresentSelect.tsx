@@ -70,11 +70,11 @@ function PresentSelect() {
   }
 
   function renderContent() {
-    if (isFinalRound) {
-      return (
-        <span>is the final round!!</span>
-      );
-    }
+    // if (isFinalRound) {
+    //   return (
+    //     <span>is the final round!!</span>
+    //   );
+    // }
 
     return (
       <React.Fragment>

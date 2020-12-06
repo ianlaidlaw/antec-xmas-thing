@@ -7,8 +7,11 @@ type Props = {
 };
 
 function Participant(props: Props) {
+  let myClassName = 'remaining-name';
+  myClassName += props.isHighlighted ? ' glow' : '';
+
   return (
-    <div className={props.isHighlighted ? 'glow' : ''}>
+    <div className={myClassName}>
       { props.name }
     </div>
   );

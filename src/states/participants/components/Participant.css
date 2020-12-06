@@ -1,3 +1,8 @@
 .glow {
   background-color: lime;
 } 
+
+.remaining-name {
+  font-size: larger;
+  font-weight: 500;
+}

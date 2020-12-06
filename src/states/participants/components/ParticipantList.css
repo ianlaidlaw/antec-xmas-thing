@@ -1,3 +1,20 @@
+#participant-list {
+  width: 25%;
+  background-color: violet;
+}
+
+.title {
+  text-align: center;
+}
+
 #participant-list-container {
   background-color: lightskyblue;
+  margin-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.participant-container {
+  margin-bottom: 10px;
+  flex: 0 50%;
 }
