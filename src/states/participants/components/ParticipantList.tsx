@@ -1,41 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Participant from './Participant';
 import './ParticipantList.css';
 import type { ReducerCombinedState } from '../../../reducers.js';
+import { selectParticipantThunk } from '../../round/thunks';
 
 export function ParticipantList() {
+  const dispatch = useDispatch();
   const { availableParticipants } = useSelector(({participants}: ReducerCombinedState) => participants);
   const { isRandomizing } = useSelector(({round}: ReducerCombinedState) => round);
-  const [ glowIndex, setGlowIndex ] = useState<number | undefined | null>(undefined);
+  const [ state, setState ] = useState<State>({ glowIndex: undefined, randomizationSpeed: 50 });
+  const { glowIndex, randomizationSpeed } = state;
+
+  const isFirstRun = useRef(true);
+
+  type State = {
+    glowIndex: number | undefined | null;
+    randomizationSpeed: number,
+  };
 
   useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
     if (isRandomizing) {
-      setGlowIndex(null);
+      setState({
+        randomizationSpeed: 50,
+        glowIndex: null,
+      });
     } else {
-      console.log('STOPPING!!!!');
-      setGlowIndex(undefined);
+      const stoppedIndex = glowIndex || 0;
+      console.log(`stopped at: ${availableParticipants[stoppedIndex]}`);
+
+      // dispatch this stopped index to select them
+      setTimeout(() => {
+        dispatch(selectParticipantThunk(stoppedIndex));
+        setState({
+          ...state,
+          glowIndex: undefined,
+        });
+      }, 1000);
     }
   }, [isRandomizing]);
 
   useEffect(() => {
     if (glowIndex === undefined) {
-      console.log('should be done???');
       return;
     } else if (glowIndex === null) {
-      setGlowIndex(0);
+      setState({
+        ...state,
+        glowIndex: 0,
+      });
     } else if (isRandomizing) {
       const newIndex = glowIndex >= availableParticipants.length - 1
         ? 0
         : glowIndex + 1;
+      const newRandomizationSpeed = randomizationSpeed + 10;
 
       setTimeout(() => {
-        setGlowIndex(newIndex);
-      }, 50); 
-    } else {
-      setGlowIndex(undefined);
+        setState({
+          glowIndex: newIndex,
+          randomizationSpeed: newRandomizationSpeed,
+        });
+      }, randomizationSpeed); 
     }
-  }, [glowIndex]);
+  }, [glowIndex, isRandomizing]);
 
   function renderParticipant(participant: string, index: number) {
     return (
@@ -48,13 +79,11 @@ export function ParticipantList() {
     );
   }
 
-  console.log(glowIndex);
-
   return (
     <div id='participant-list'>
       <h3 className='title'>Remaining Participants</h3>
       <div id='participant-list-container'>
-        { availableParticipants.map((x, index) => renderParticipant(x, index)) }
+        { availableParticipants.map(renderParticipant) }
       </div>
     </div>
   );
