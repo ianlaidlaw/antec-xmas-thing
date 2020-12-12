@@ -10,7 +10,7 @@ import { startRoundThunk } from '../states/round/thunks';
 function PresentSelect() {
   const dispatch = useDispatch();
   const state = useSelector((state: ReducerCombinedState) => state);
-  const { activeParticipant, isFinalRound } = state.round;
+  const { activeParticipant, isFinalRound, isRandomizing } = state.round;
   const { firstParticipant } = state.participants;
   const { presents, claimedPresents } = state.presents;
 
@@ -40,10 +40,12 @@ function PresentSelect() {
       );
     }
 
+    const disableButton = isRandomizing || (!!activeParticipant && shouldStartFinalRound)
+
     return (
       <React.Fragment>
         <button 
-          disabled={!!activeParticipant && shouldStartFinalRound} 
+          disabled={disableButton} 
           onClick={startRound}
         >
           { shouldStartFinalRound ? 'Start Final Round' : 'Start Round' }
