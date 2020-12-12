@@ -1,12 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAvailableParticipants, setFirstParticipant } from '../states/participants/actions';
 import ParticipantList from '../states/participants/components/ParticipantList';
 import ClaimedPresentList from '../states/presents/components/ClaimedPresentList';
 import PresentList from '../states/presents/components/PresentList';
-import { resetStolenPresents, setActiveParticipant, setIsFinalRound } from '../states/round/actions';
 import './PresentSelect.css';
 import type { ReducerCombinedState } from '../reducers';
+import { startRoundThunk } from '../states/round/thunks';
 
 function PresentSelect() {
   const dispatch = useDispatch();
@@ -20,42 +19,7 @@ function PresentSelect() {
   console.log({state});
 
   function startRound() {
-    // choose a player randomly from the available participants
-    const availableParticipants = state.participants.availableParticipants;
-
-    const randomlySelectedParticipant = availableParticipants[
-      Math.floor(Math.random() * availableParticipants.length)
-    ];
-
-    const newAvailableParticipants = availableParticipants.filter((x) => x !== randomlySelectedParticipant);
-    
-    dispatch({
-      type: setAvailableParticipants,
-      payload: newAvailableParticipants,
-    });
-
-    dispatch({
-      type: setActiveParticipant,
-      payload: randomlySelectedParticipant,
-    });
-
-    dispatch({
-      type: resetStolenPresents,
-    });
-
-    if (!firstParticipant) {
-      dispatch({
-        type: setFirstParticipant,
-        payload: randomlySelectedParticipant,
-      });
-    }
-
-    // check to see if its the final round
-    if (shouldStartFinalRound) {
-      dispatch({
-        type: setIsFinalRound,
-      });
-    }
+    dispatch(startRoundThunk());
   }
 
   function renderActiveParticipant() {
@@ -70,11 +34,11 @@ function PresentSelect() {
   }
 
   function renderContent() {
-    // if (isFinalRound) {
-    //   return (
-    //     <span>is the final round!!</span>
-    //   );
-    // }
+    if (isFinalRound) {
+      return (
+        <span>is the final round!!</span>
+      );
+    }
 
     return (
       <React.Fragment>

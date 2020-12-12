@@ -1,4 +1,5 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import app, { reducerState as appReducerState } from './states/app/reducer';
 import participants, { reducerState as participantsReducerState } from './states/participants/reducer';
 import presents, { reducerState as presentsReducerState } from './states/presents/reducer';
@@ -18,6 +19,6 @@ const reducers = combineReducers({
   round,
 });
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunk));
 
 export default store;
