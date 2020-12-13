@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { selectPresent as selectPresentAction } from '../actions';
 import './Present.css';
+import mcdonalds from '../../../res/img/mcdonalds.png';
 
 type Props = {
   name: string,
@@ -50,6 +51,12 @@ function Present(props: Props) {
     );
   }
 
+  function renderGiftCard() {
+    return (
+      <img className='claimed' src={mcdonalds} />
+    );
+  }
+
   let className = 'present-description-container';
 
   if (props.stolen) {
@@ -60,6 +67,7 @@ function Present(props: Props) {
     <div className={className}>
       <div className='present-container' onClick={selectPresent}>
         { props.hideName && renderUnopened() }
+        { !props.hideName && renderGiftCard() }
       </div>
       { !props.hideName && renderClaimed() }
     </div>

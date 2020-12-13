@@ -5,6 +5,7 @@ import { resetStolenPresents, setActiveParticipant } from '../../round/actions';
 import Present from './Present';
 import './PresentList.css';
 import type { ReducerCombinedState } from '../../../reducers';
+import { selectPresentThunk } from '../thunks';
 
 type Props = {
   activeParticipant: string | null,
@@ -21,25 +22,7 @@ export function PresentList(props: Props) {
 
   function claimPresent(present: string) {
     // start the animation?
-
-    const completedParticipant = {
-      name: activeParticipant,
-      selected: present,
-    };
-
-    dispatch({
-      type: setActiveParticipant,
-      payload: null,
-    });
-
-    dispatch({
-      type: setCompletedParticipants,
-      payload: [...completedParticipants, completedParticipant],
-    });
-
-    dispatch({
-      type: resetStolenPresents,
-    });
+    dispatch(selectPresentThunk(activeParticipant, present));
   }
 
   function renderPresent(present: string) {

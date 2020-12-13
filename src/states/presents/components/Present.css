@@ -5,8 +5,7 @@
 .present-container {
   cursor: pointer;
   width: 100px;
-  height: 50px;
-  border: 1px solid black;
+  height: 63px;
   display: flex;
   flex: 1;
 }
@@ -18,9 +17,13 @@
 }
 
 .claimed-description {
-  background-color: turquoise;
+  /* background-color: turquoise; */
   display: flex;
   flex-direction: column;
+}
+
+img.claimed {
+  width: 100px;
 }
 
 .stolen {

@@ -1,16 +1,18 @@
 import { ActionType } from '../../res/types.js';
-import { setInitialPresents, selectPresent } from './actions';
+import { setInitialPresents, selectPresent, openPresent } from './actions';
 
 export type reducerState = {
   presents: string[],
   availablePresents: string[],
   claimedPresents: string[],
+  openingPresent: string | null,
 };
 
 const initialState = {
   presents: [],
   availablePresents: [],
   claimedPresents: [],
+  openingPresent: null,
 };
 
 const reducer = (state: reducerState = initialState, action: ActionType) => {
@@ -42,6 +44,12 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
         availablePresents: [...newAvailablePresents],
         claimedPresents: [...newClaimedPresents],
       };
+    }
+    case openPresent: {
+      return {
+        ...state,
+        openingPresent: action.payload,
+      }
     }
     default:
       return state;

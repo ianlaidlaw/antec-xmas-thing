@@ -1,0 +1,29 @@
+#open-present {
+  flex: 1;
+  background-color: olivedrab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#opening-present {
+  /* width: 100px; */
+  /* height: 50px; */
+}
+
+img.opening {
+  width: 300px;
+}
+
+button {
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: large;
+  padding: 4px 8px;
+  cursor: pointer;
+
+  margin-top: 20px;
+}

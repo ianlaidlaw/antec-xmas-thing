@@ -1,14 +1,14 @@
-#participant-list {
-  /* width: 25%; */
-  /* background-color: violet; */
-}
+/* #participant-list {
+  width: 25%;
+  background-color: violet;
+} */
 
 .title {
   text-align: center;
 }
 
 #participant-list-container {
-  background-color: lightskyblue;
+  /* background-color: lightskyblue; */
   padding: 10px;
   /* display: flex;
   flex-wrap: wrap;
