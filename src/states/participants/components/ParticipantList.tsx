@@ -11,6 +11,8 @@ export function ParticipantList() {
   const { isRandomizing } = useSelector(({round}: ReducerCombinedState) => round);
   const [ state, setState ] = useState<State>({ glowIndex: undefined, randomizationSpeed: 50 });
   const { glowIndex, randomizationSpeed } = state;
+  
+  const isRandomizingRef = useRef(isRandomizing);
 
   const isFirstRun = useRef(true);
 
@@ -25,14 +27,17 @@ export function ParticipantList() {
       return;
     }
 
-    if (isRandomizing) {
+    isRandomizingRef.current = isRandomizing;
+
+    if (isRandomizingRef.current) {
       setState({
         randomizationSpeed: 50,
         glowIndex: null,
       });
     } else {
       const stoppedIndex = glowIndex || 0;
-      console.log(`stopped at: ${availableParticipants[stoppedIndex]}`);
+      // console.log(`stopped at: ${availableParticipants[stoppedIndex]}`);
+      // console.log({rRef: isRandomizingRef.current});
 
       // dispatch this stopped index to select them
       setTimeout(() => {
@@ -53,20 +58,28 @@ export function ParticipantList() {
         ...state,
         glowIndex: 0,
       });
-    } else if (isRandomizing) {
+    } else if (isRandomizingRef.current) {
       const newIndex = glowIndex >= availableParticipants.length - 1
         ? 0
         : glowIndex + 1;
       const newRandomizationSpeed = randomizationSpeed + 10;
 
-      setTimeout(() => {
-        setState({
-          glowIndex: newIndex,
-          randomizationSpeed: newRandomizationSpeed,
-        });
-      }, randomizationSpeed); 
+      const timeOut = setTimeout(() => {
+        // get isRandomizing again?
+        // console.log({isRandomizing});
+        // console.log({rRef: isRandomizingRef.current});
+
+        if (isRandomizingRef.current) {
+          setState({
+            glowIndex: newIndex,
+            randomizationSpeed: newRandomizationSpeed,
+          });
+        }
+      }, randomizationSpeed);
+
+      // return clearTimeout(timeOut);
     }
-  }, [glowIndex, isRandomizing]);
+  }, [glowIndex]);
 
   function renderParticipant(participant: string, index: number) {
     return (

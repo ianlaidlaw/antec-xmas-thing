@@ -2,3 +2,8 @@
   flex: 1;
   background-color: lightgreen;
 }
+
+#top-content {
+  display: flex;
+  flex-direction: row;
+}

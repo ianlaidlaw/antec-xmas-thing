@@ -43,11 +43,30 @@ function Present(props: Props) {
     return null;
   }
 
+  function renderUnopened() {
+    return (
+      <div className='unopened'>
+        click
+      </div>
+    );
+  }
+
+  function renderClaimed() {
+    return (
+      <React.Fragment>
+        { props.name }
+        { renderOwner() }
+        { renderStolen() }
+      </React.Fragment>
+    );
+  }
+
   return (
-    <div className='present-container' onClick={selectPresent}>
-      { props.hideName ? <span>PICK ME!</span> : props.name }
-      { renderOwner() }
-      { renderStolen() }
+    <div className='present-description-container'>
+      <div className='present-container' onClick={selectPresent}>
+        { props.hideName && renderUnopened() }
+      </div>
+      { !props.hideName && renderClaimed() }
     </div>
   );
 }

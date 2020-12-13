@@ -18,7 +18,10 @@ function PresentSelect() {
 
   console.log({state});
 
-  function startRound() {
+  function onStartRoundClick() {
+    if (isRandomizing) {
+      return;
+    }
     dispatch(startRoundThunk());
   }
 
@@ -40,21 +43,23 @@ function PresentSelect() {
       );
     }
 
-    const disableButton = isRandomizing || (!!activeParticipant && shouldStartFinalRound)
+    const disableButton = !!activeParticipant;
 
     return (
       <React.Fragment>
         <button 
           disabled={disableButton} 
-          onClick={startRound}
+          onClick={onStartRoundClick}
         >
           { shouldStartFinalRound ? 'Start Final Round' : 'Start Round' }
         </button>
         { renderActiveParticipant() }
-        <ParticipantList />
-        <PresentList 
-          activeParticipant={activeParticipant}
-        />
+        <div id='top-content'>
+          <ParticipantList />
+          <PresentList 
+            activeParticipant={activeParticipant}
+          />
+        </div>
         <ClaimedPresentList 
           activeParticipant={activeParticipant}
         />

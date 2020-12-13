@@ -23,7 +23,7 @@ export const startRoundThunk = () => {
       await dispatch({
         type: setActiveParticipant,
         payload: null,
-      })
+      });
   };
 };
 
@@ -65,5 +65,5 @@ export const selectParticipantThunk = (index: number) => {
 };
 
 function getRandomNumber() {
-  return (Math.floor(Math.random() * 5) + 5) * 1000; 
+  return (Math.floor(Math.random() * 2) + 1) * 1000; 
 }

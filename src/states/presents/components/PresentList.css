@@ -1,5 +1,13 @@
+#present-list {
+  width: 75%;
+  background-color: yellow;
+}
+
 #present-list-container {
   background-color: hotpink;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 50%;
 }
 
 .disabled {
