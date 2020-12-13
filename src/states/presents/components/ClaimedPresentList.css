@@ -1,5 +1,12 @@
+#claimed-present-list {
+  text-align: center;
+}
+
 #claimed-presents-container {
-  background-color: lemonchiffon;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 50%;
 }
 
 .disabled {

@@ -46,24 +46,32 @@ function PresentSelect() {
     const disableButton = !!activeParticipant;
 
     return (
-      <React.Fragment>
-        <button 
-          disabled={disableButton} 
-          onClick={onStartRoundClick}
-        >
-          { shouldStartFinalRound ? 'Start Final Round' : 'Start Round' }
-        </button>
-        { renderActiveParticipant() }
-        <div id='top-content'>
-          <ParticipantList />
-          <PresentList 
-            activeParticipant={activeParticipant}
-          />
+      <div id='main-content'>
+        <div id='header-content'>
+          <button
+            id='start-round-btn'
+            disabled={disableButton} 
+            onClick={onStartRoundClick}
+          >
+            { shouldStartFinalRound ? 'Start Final Round' : "Who's Next?" }
+          </button>
+          { renderActiveParticipant() }
         </div>
-        <ClaimedPresentList 
-          activeParticipant={activeParticipant}
-        />
-      </React.Fragment>
+
+        <div id='content'>
+          <div id='left-content'>
+            <ParticipantList />
+          </div>
+          <div id='right-content'>
+            <PresentList
+              activeParticipant={activeParticipant}
+            />
+            <ClaimedPresentList
+              activeParticipant={activeParticipant}
+            />
+          </div>
+        </div>
+      </div>
     );
   }
 

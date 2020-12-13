@@ -31,7 +31,7 @@ export function ParticipantList() {
 
     if (isRandomizingRef.current) {
       setState({
-        randomizationSpeed: 50,
+        randomizationSpeed: 10,
         glowIndex: null,
       });
     } else {
@@ -62,7 +62,7 @@ export function ParticipantList() {
       const newIndex = glowIndex >= availableParticipants.length - 1
         ? 0
         : glowIndex + 1;
-      const newRandomizationSpeed = randomizationSpeed + 10;
+      const newRandomizationSpeed = randomizationSpeed + 5;
 
       const timeOut = setTimeout(() => {
         // get isRandomizing again?
@@ -83,22 +83,19 @@ export function ParticipantList() {
 
   function renderParticipant(participant: string, index: number) {
     return (
-      <div className='participant-container' key={participant}>
+      <li key={participant} className='participant-container'>
         <Participant
           name={participant}
           isHighlighted={index === glowIndex}
         />
-      </div>
+      </li>
     );
   }
 
   return (
-    <div id='participant-list'>
-      <h3 className='title'>Remaining Participants</h3>
-      <div id='participant-list-container'>
-        { availableParticipants.map(renderParticipant) }
-      </div>
-    </div>
+    <ul id='participant-list-container'>
+      { availableParticipants.map(renderParticipant) }
+    </ul>
   );
 }
 

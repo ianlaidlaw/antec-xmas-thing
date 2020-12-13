@@ -16,3 +16,13 @@
   display: flex;
   flex: 1;
 }
+
+.claimed-description {
+  background-color: turquoise;
+  display: flex;
+  flex-direction: column;
+}
+
+.stolen {
+  opacity: 0.25;
+}

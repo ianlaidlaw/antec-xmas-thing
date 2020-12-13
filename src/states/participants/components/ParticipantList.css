@@ -1,6 +1,6 @@
 #participant-list {
-  width: 25%;
-  background-color: violet;
+  /* width: 25%; */
+  /* background-color: violet; */
 }
 
 .title {
@@ -9,12 +9,15 @@
 
 #participant-list-container {
   background-color: lightskyblue;
-  margin-left: 10px;
-  display: flex;
+  padding: 10px;
+  /* display: flex;
   flex-wrap: wrap;
+  flex: 1; */
+  columns: 2;
+  list-style-type: none;
 }
 
 .participant-container {
   margin-bottom: 10px;
-  flex: 0 50%;
+  /* flex: 0 50%; */
 }

@@ -62,7 +62,7 @@ export function PresentList(props: Props) {
 
   return (
     <div id='present-list'>
-      <h3>Available Presents</h3>
+      <span className='header'> Unopened Gift Card(s):</span>
       <div id='present-list-container' className={className}>
         { availablePresents.map(renderPresent) }
       </div>

@@ -87,8 +87,8 @@ function ClaimedPresentList(props: Props) {
   }
 
   return (
-    <div>
-      <h3>Claimed Presents</h3>
+    <div id='claimed-present-list'>
+      <span className='header'>Opened Gift Card(s):</span>
       <div id='claimed-presents-container' className={className}>
         { claimedPresents.map(renderClaimedPresent) }
       </div>

@@ -23,16 +23,6 @@ function Present(props: Props) {
     props.onSelect(props.name);
   }
 
-  function renderOwner() {
-    if (props.owner) {
-      return (
-        <span> - {props.owner}</span>
-      );
-    }
-
-    return null;
-  }
-
   function renderStolen() {
     if (props.stolen) {
       return (
@@ -53,16 +43,21 @@ function Present(props: Props) {
 
   function renderClaimed() {
     return (
-      <React.Fragment>
-        { props.name }
-        { renderOwner() }
-        { renderStolen() }
-      </React.Fragment>
+      <div className='claimed-description'>
+        <span>{ props.name }</span>
+        <span>{ props.owner }</span>
+      </div>
     );
   }
 
+  let className = 'present-description-container';
+
+  if (props.stolen) {
+    className += ' stolen';
+  }
+
   return (
-    <div className='present-description-container'>
+    <div className={className}>
       <div className='present-container' onClick={selectPresent}>
         { props.hideName && renderUnopened() }
       </div>

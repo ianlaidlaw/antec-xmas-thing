@@ -1,13 +1,17 @@
 #present-list {
-  width: 75%;
-  background-color: yellow;
+  text-align: center;
 }
 
 #present-list-container {
-  background-color: hotpink;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   flex: 0 50%;
+}
+
+.header {
+  font-size: larger;
+  font-weight: bold;
 }
 
 .disabled {
