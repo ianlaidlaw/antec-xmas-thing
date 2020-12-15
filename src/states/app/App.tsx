@@ -4,6 +4,7 @@ import './App.css';
 import SplashScreen from '../../views/SplashScreen';
 import PresentSelect from '../../views/PresentSelect';
 import OpenPresent from '../../views/OpenPresent';
+import Summary from '../../views/Summary';
 import { Views } from '../../res/constants';
 import type { ReducerCombinedState } from '../../reducers';
 
@@ -16,6 +17,8 @@ function App() {
         return <PresentSelect />;
       case Views.OpenPresent:
         return <OpenPresent />;
+      case Views.Summary:
+        return <Summary />;
       case Views.Splash:
       default:
         return <SplashScreen />;

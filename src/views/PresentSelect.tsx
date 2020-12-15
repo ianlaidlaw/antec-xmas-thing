@@ -6,6 +6,8 @@ import PresentList from '../states/presents/components/PresentList';
 import './PresentSelect.css';
 import type { ReducerCombinedState } from '../reducers';
 import { startRoundThunk, startFinalRoundThunk } from '../states/round/thunks';
+import { setCurrentView } from '../states/app/actions';
+import { Views } from '../res/constants';
 
 function PresentSelect() {
   const dispatch = useDispatch();
@@ -30,16 +32,11 @@ function PresentSelect() {
     }
   }
 
-  function onStartFinalRoundClick() {
-    if (isRandomizing) {
-      return;
-    }
-
-    dispatch(startFinalRoundThunk());
-  }
-
   function onCompleteClick() {
-
+    dispatch({
+      type: setCurrentView,
+      payload: Views.Summary,
+    });
   }
 
   function renderActiveParticipant() {
@@ -47,7 +44,7 @@ function PresentSelect() {
       <b id='active-label'> 
         Active Participant:&nbsp;&nbsp;
         <span id='active-participant'>
-          { shouldStartFinalRound ? firstParticipant?.name : activeParticipant?.name }
+          { activeParticipant?.name }
         </span>
       </b>
     );
@@ -60,14 +57,14 @@ function PresentSelect() {
   }
 
   function renderContent() {
-    const disableButton = !!activeParticipant;
+    const disableButton = !!activeParticipant || isFinalRound;
 
     return (
       <div id='main-content'>
         <div id='header-content'>
           <button
             id='start-round-btn'
-            disabled={disableButton} 
+            disabled={disableButton}
             onClick={onStartRoundClick}
           >
             { shouldStartFinalRound ? 'Start Final Round' : 'Who\'s Next?' }

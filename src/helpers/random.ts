@@ -1,13 +1,5 @@
-export const generateRandomColor = () => {
-  const red = Math.random();
-  const green = Math.random();
-  const blue = Math.random();
-
-  return `rgba(${red},${green},${blue})`;
-};
-
 export const generateRandomColors = (numColors: number) => {
-  const randomColors = Array(numColors+1).fill('').reduce((acc: string[]) => {
+  const randomColors = Array(numColors).fill('').reduce((acc: string[]) => {
     const red = Math.floor(Math.random() * 255);
     const green = Math.floor(Math.random() * 255);
     const blue = Math.floor(Math.random() * 255);
@@ -29,5 +21,19 @@ export const generateUUID = () => {
 };
 
 export const getRandomRouletteDuration = () => {
-  return (Math.floor(Math.random() * 2) + 4) * 1000; 
-}
+  // return (Math.floor(Math.random() * 2) + 4) * 1000; 
+  return 0;
+};
+
+export const shuffleOrder = (input: any[]) => {
+  const shuffledArray = input.slice();
+
+  for (var i = shuffledArray.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = shuffledArray[i];
+    shuffledArray[i] = shuffledArray[j];
+    shuffledArray[j] = temp;
+  }
+
+  return shuffledArray;
+};

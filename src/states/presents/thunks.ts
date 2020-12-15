@@ -13,7 +13,7 @@ export const selectPresentThunk = (activeParticipant: ParticipantType | null, pr
       participants: { completedParticipants },
     }: ReducerCombinedState = getState();
 
-    const completedParticipant: ParticipantType = {
+    const completedParticipant: ParticipantType = { 
       id: '',
       name: '',
       ...activeParticipant,

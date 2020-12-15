@@ -14,7 +14,6 @@ const initialState = {
   availablePresents: [],
   claimedPresents: [],
   openingPresent: null,
-  openingPresentIndex: null,
 };
 
 const reducer = (state: reducerState = initialState, action: ActionType) => {
@@ -31,8 +30,6 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
       let { availablePresents, claimedPresents } = state;
 
       const present = action.payload;
-
-      console.log({present});
 
       let presentId = present.id;
       let newAvailablePresents = [];
@@ -52,7 +49,7 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
         claimedPresents: [...newClaimedPresents],
         openingPresent: present,
       };
-    }
+    };
     case openPresent: {
       return {
         ...state,

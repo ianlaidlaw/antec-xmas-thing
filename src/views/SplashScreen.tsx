@@ -30,7 +30,7 @@ function SplashScreen() {
 
     await dispatch({
       type: setRandomColors,
-      payload: generateRandomColors(presentNames.length),
+      payload: generateRandomColors(presentNames.length+1),
     });
 
     await dispatch({

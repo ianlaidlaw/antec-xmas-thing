@@ -1,7 +1,9 @@
-import { generateRandomColor, generateUUID } from './random';
+import { generateUUID, shuffleOrder } from './random';
 
 export const initializePresents = (presentNames: string[]) => {
-  const presentObjects = presentNames.map((name, index) => {
+  const shuffledPresentNames = shuffleOrder(presentNames);
+
+  const presentObjects = shuffledPresentNames.map((name, index) => {
     const uuid = generateUUID();
 
     return {
