@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './OpenPresent.css';
 import type { ReducerCombinedState } from '../reducers';
 import mcdonalds from '../res/img/mcdonalds.png';
 import { setCurrentView } from '../states/app/actions';
-import { openPresent } from '../states/presents/actions';
 import { Views } from '../res/constants';
-
 
 const animations = [
   require('react-reveal/Tada'),
@@ -18,45 +16,73 @@ const animations = [
 ];
 
 export function OpenPresent() {
-  const dispatch = useDispatch();
-  const state = useSelector((state: ReducerCombinedState) => state);
+  const [ flipPresent, setFlipPresent ] = useState(false);
 
-  function onContinueButtonpress() {
+  setTimeout(() => {
+    setFlipPresent(true);
+  }, 2000);
+
+  const dispatch = useDispatch();
+  const {
+    app: { randomColors },
+    presents: { openingPresent },
+  } = useSelector((state: ReducerCombinedState) => state);
+
+  function onContinueButtonPress() {
     dispatch({
       type: setCurrentView,
       payload: Views.PresentSelect,
     });
-
-    dispatch({
-      type: openPresent,
-      payload: null,
-    });
   }
 
-  function renderPresent() {
+  function renderUnopened() {
+    if (flipPresent) {
+      return null;
+    }
+
+    const index = openingPresent?.number || 1;
+    const randomColor = randomColors[index];
+
+    return (
+      <div className='opening' style={{backgroundColor: randomColor}}>
+        <span className='present-number'>{index}</span>
+      </div>
+    );
+  }
+
+  function renderOpened() {
+    if (!flipPresent) {
+      return null;
+    }
+
     const randomIndex = Math.floor(Math.random() * animations.length);
     const RandomAnimationComponent = animations[randomIndex];
 
     return (
       <RandomAnimationComponent>
-        <div id='opening-present'>
-          <img className='opening' src={mcdonalds} />
-        </div>
+        <img className='opening' src={mcdonalds} />
       </RandomAnimationComponent>
     );
   }
 
   function renderDescription() {
+    const desctiption = flipPresent
+      ? openingPresent?.name
+      : 'Opening...';
+
     return (
-      <span id='description'>Name of the Place -</span>
+      <span id='description'>{desctiption}</span>
     );
   }
 
   return (
     <div id='open-present'>
-      { renderPresent() }
+      <div id='opening-present'>
+        { renderUnopened() }
+        { renderOpened() }
+      </div>
       { renderDescription() }
-      <button onClick={onContinueButtonpress}>
+      <button id='open-present-btn' disabled={!flipPresent} onClick={onContinueButtonPress}>
         Continue
       </button>
     </div>

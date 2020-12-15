@@ -9,6 +9,9 @@
 
 #main-content {
   margin: 0 20px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 #content {
@@ -34,6 +37,13 @@
   padding: 4px 8px;
   cursor: pointer;
   margin-right: 10px;
+}
+
+#complete-btn {
+  align-self: center;
+  margin-top: 20px;
+  height: 50px;
+  width: 300px;
 }
 
 #start-round-btn:disabled {

@@ -5,7 +5,7 @@ import ClaimedPresentList from '../states/presents/components/ClaimedPresentList
 import PresentList from '../states/presents/components/PresentList';
 import './PresentSelect.css';
 import type { ReducerCombinedState } from '../reducers';
-import { startRoundThunk } from '../states/round/thunks';
+import { startRoundThunk, startFinalRoundThunk } from '../states/round/thunks';
 
 function PresentSelect() {
   const dispatch = useDispatch();
@@ -22,7 +22,24 @@ function PresentSelect() {
     if (isRandomizing) {
       return;
     }
-    dispatch(startRoundThunk());
+
+    if (shouldStartFinalRound) {
+      dispatch(startFinalRoundThunk());
+    } else {
+      dispatch(startRoundThunk());
+    }
+  }
+
+  function onStartFinalRoundClick() {
+    if (isRandomizing) {
+      return;
+    }
+
+    dispatch(startFinalRoundThunk());
+  }
+
+  function onCompleteClick() {
+
   }
 
   function renderActiveParticipant() {
@@ -36,13 +53,13 @@ function PresentSelect() {
     );
   }
 
-  function renderContent() {
-    if (isFinalRound) {
-      return (
-        <span>is the final round!!</span>
-      );
-    }
+  function renderEndGiftExchangeButton() {
+    return (
+      <button id='complete-btn' onClick={onCompleteClick}>End Gift Exchange!</button>
+    );
+  }
 
+  function renderContent() {
     const disableButton = !!activeParticipant;
 
     return (
@@ -63,14 +80,11 @@ function PresentSelect() {
             <ParticipantList />
           </div>
           <div id='right-content'>
-            <PresentList
-              activeParticipant={activeParticipant}
-            />
-            <ClaimedPresentList
-              activeParticipant={activeParticipant}
-            />
+            { !isFinalRound && <PresentList /> }
+            <ClaimedPresentList  />
           </div>
         </div>
+        { isFinalRound && renderEndGiftExchangeButton() }
       </div>
     );
   }

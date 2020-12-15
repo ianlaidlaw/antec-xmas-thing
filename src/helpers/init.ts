@@ -3,12 +3,10 @@ import { generateRandomColor, generateUUID } from './random';
 export const initializePresents = (presentNames: string[]) => {
   const presentObjects = presentNames.map((name, index) => {
     const uuid = generateUUID();
-    const randomColor = generateRandomColor();
 
     return {
       id: uuid,
       name,
-      color: randomColor,
       number: index+1,
     };
   });

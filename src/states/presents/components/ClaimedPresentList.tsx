@@ -8,19 +8,13 @@ import type { ReducerCombinedState } from '../../../reducers';
 import type { ParticipantType } from '../../participants/types';
 import type { PresentType } from '../Types';
 
-type Props = {
-  activeParticipant: ParticipantType | null,
-};
-
-function ClaimedPresentList(props: Props) {
+function ClaimedPresentList() {
   const dispatch = useDispatch();
 
   const { presents, round, participants } = useSelector((state: ReducerCombinedState) => state);
   const { claimedPresents } = presents;
-  const { stolenPresentIds } = round;
+  const { activeParticipant, stolenPresentIds } = round;
   const { completedParticipants } = participants;
-
-  const { activeParticipant } = props;
 
   function stealPresent(present: PresentType) {
     // get the participant from the stolen present
@@ -71,7 +65,6 @@ function ClaimedPresentList(props: Props) {
     return (
       <div key={`claimedPresent-${present.id}`} className={className}>
         <Present
-          name={present.name}
           onSelect={stealPresent}
           owner={owner?.name}
           stolen={isStolenThisRound}

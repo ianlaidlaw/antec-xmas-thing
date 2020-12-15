@@ -7,12 +7,10 @@ import { ReducerCombinedState } from '../../../reducers';
 import type { PresentType } from '../Types';
 
 type Props = {
-  name: string,
   owner?: string | null | undefined,
   stolen: boolean,
   hideName: boolean,
   onSelect: (name: PresentType) => void,
-  index?: number,
   present: PresentType
 }
 
@@ -30,7 +28,7 @@ const Present = memo((props: Props) => {
   }
 
   function renderUnopened() {
-    const index = props.index || 1;
+    const index = props.present.number || 1;
     const randomColor = randomColors[index];
 
     return (
@@ -43,7 +41,7 @@ const Present = memo((props: Props) => {
   function renderClaimed() {
     return (
       <div className='claimed-description'>
-        <span>{ props.name }</span>
+        <span>{ props.present.name }</span>
         <span>{ props.owner }</span>
       </div>
     );

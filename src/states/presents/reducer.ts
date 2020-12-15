@@ -38,8 +38,6 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
       let newAvailablePresents = [];
       let newClaimedPresents = [];
 
-      console.log(presentId);
-
       if (availablePresents.some((x) => x.id === presentId)) {
         newAvailablePresents = availablePresents.filter((x) => x.id !== presentId);
         newClaimedPresents = [...claimedPresents, action.payload];
@@ -52,7 +50,7 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
         ...state,
         availablePresents: [...newAvailablePresents],
         claimedPresents: [...newClaimedPresents],
-        openingPresentIndex: action.payload.index,
+        openingPresent: present,
       };
     }
     case openPresent: {

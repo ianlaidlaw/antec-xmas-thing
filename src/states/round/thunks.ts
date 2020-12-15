@@ -1,6 +1,7 @@
 import { setAvailableParticipants, setFirstParticipant } from '../../states/participants/actions';
 import { resetStolenPresents, setActiveParticipant, setIsFinalRound, setIsRandomizing } from '../../states/round/actions';
 import type { ReducerCombinedState } from '../../reducers';
+import { getRandomRouletteDuration } from '../../helpers/random';
 
 export const startRoundThunk = () => {
   return async (dispatch: Function) => {
@@ -9,7 +10,7 @@ export const startRoundThunk = () => {
           type: setIsRandomizing,
           payload: false,
         });
-      }, getRandomNumber());
+      }, getRandomRouletteDuration());
 
       await dispatch({
         type: resetStolenPresents,
@@ -24,6 +25,18 @@ export const startRoundThunk = () => {
         type: setActiveParticipant,
         payload: null,
       });
+  };
+};
+
+export const startFinalRoundThunk = () => {
+  return async (dispatch: Function) => {
+    await dispatch({
+      type: resetStolenPresents,
+    });
+
+    await dispatch({
+      type: setIsFinalRound,
+    });
   };
 };
 
@@ -53,17 +66,5 @@ export const selectParticipantThunk = (index: number) => {
         payload: randomlySelectedParticipant,
       });
     }
-
-    // check to see if its the final round
-    // Need to be moved to other thunk?
-    if (shouldStartFinalRound) {
-      await dispatch({
-        type: setIsFinalRound,
-      });
-    }
   };
 };
-
-function getRandomNumber() {
-  return (Math.floor(Math.random() * 5) + 7) * 100; 
-}

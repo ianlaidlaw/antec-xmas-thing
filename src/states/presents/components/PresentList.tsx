@@ -5,20 +5,14 @@ import './PresentList.css';
 import type { ReducerCombinedState } from '../../../reducers';
 import { selectPresentThunk } from '../thunks';
 import type { PresentType } from '../Types';
-import type { ParticipantType } from '../../participants/types';
 
-type Props = {
-  activeParticipant: ParticipantType | null,
-};
-
-export function PresentList(props: Props) {
+export function PresentList() {
   const dispatch = useDispatch();
   const { 
+    round: { activeParticipant },
     presents: { availablePresents },
     participants: { completedParticipants },
   } = useSelector((state: ReducerCombinedState) => state);
-
-  const { activeParticipant } = props;
 
   function claimPresent(present: PresentType) {
     // start the animation?
@@ -29,11 +23,9 @@ export function PresentList(props: Props) {
     return (
       <Present
         key={present.id}
-        name={present.name}
         onSelect={claimPresent}
         hideName
         stolen={false}
-        index={present.number}
         present={present}
       />
     );

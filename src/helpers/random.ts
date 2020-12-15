@@ -1,12 +1,20 @@
 export const generateRandomColor = () => {
-  return `#${Math.floor(Math.random()*16777215).toString(16)}`;
+  const red = Math.random();
+  const green = Math.random();
+  const blue = Math.random();
+
+  return `rgba(${red},${green},${blue})`;
 };
 
 export const generateRandomColors = (numColors: number) => {
-  const randomColors = Array(numColors).fill('').reduce((acc: string[]) => {
+  const randomColors = Array(numColors+1).fill('').reduce((acc: string[]) => {
+    const red = Math.floor(Math.random() * 255);
+    const green = Math.floor(Math.random() * 255);
+    const blue = Math.floor(Math.random() * 255);
+    
     return [
       ...acc,
-      `#${Math.floor(Math.random()*16777215).toString(16)}`,
+      `rgba(${red},${green},${blue})`,
     ];
   }, []);
 
@@ -19,3 +27,7 @@ export const generateUUID = () => {
     return v.toString(16);
   });
 };
+
+export const getRandomRouletteDuration = () => {
+  return (Math.floor(Math.random() * 2) + 4) * 1000; 
+}
