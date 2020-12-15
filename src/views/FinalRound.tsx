@@ -14,7 +14,7 @@ export function FinalRound() {
     participants: { finalRoundParticipants },
     presents: { presents },
     round: { stolenPresentIds, activeParticipant },
-  } = useSelector((state: ReducerCombinedState) => { console.log({state}); return state});
+  } = useSelector((state: ReducerCombinedState) => state);
 
   function onSelect(present: PresentType) {
     dispatch(swapPresentThunk(activeParticipant, present));

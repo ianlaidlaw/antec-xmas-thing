@@ -56,8 +56,7 @@ export const swapPresentThunk = (activeParticipant: ParticipantType | null, targ
     // find target participant by doing a lookup of presentId in finalRoundParticipants
     // set that presentId as stolen this round
   
-    
-
+  
     const stealerPresentId = activeParticipant?.selectedPresentId;
 
     const targetPresentId = targetPresent.id;
@@ -84,13 +83,6 @@ export const swapPresentThunk = (activeParticipant: ParticipantType | null, targ
       selectedPresentId: stealerPresentId || '',
     });
 
-    // const orderedFinalRoundParticipants = finalRoundParticipantsWithoutActives.sort(
-    //   //@ts-ignore
-    //   (a, b) => a.selectedPresentId > b.selectedPresentId,
-    // );
-
-    // console.log({orderedFinalRoundParticipants});
-
     dispatch({
       type: setStolenPresents,
       payload: targetPresentId,
@@ -103,7 +95,7 @@ export const swapPresentThunk = (activeParticipant: ParticipantType | null, targ
         name: targetParticipant?.name || '',
         selectedPresentId: stealerPresentId || '',
       },
-    })
+    });
 
     dispatch({
       type: setFinalRoundParticipants,

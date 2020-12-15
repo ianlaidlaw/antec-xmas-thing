@@ -7,12 +7,12 @@ let mainWindow
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
     },
-  })
+  });
 
   mainWindow.loadURL(
     process.env.ELECTRON_START_URL ||
@@ -22,6 +22,19 @@ function createWindow() {
         slashes: true,
       })
   )
+
+  mainWindow.on('close', function(e) {
+    const choice = require('electron').dialog.showMessageBoxSync(this,
+      {
+        type: 'question',
+        buttons: ['Yes', 'No'],
+        title: 'Confirm',
+        message: 'Are you sure you want to quit?'
+      });
+    if (choice === 1) {
+      e.preventDefault();
+    }
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null
