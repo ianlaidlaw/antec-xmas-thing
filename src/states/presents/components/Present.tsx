@@ -1,8 +1,9 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { memo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectPresent as selectPresentAction } from '../actions';
 import './Present.css';
 import mcdonalds from '../../../res/img/mcdonalds.png';
+import { ReducerCombinedState } from '../../../reducers';
 
 type Props = {
   name: string,
@@ -10,34 +11,32 @@ type Props = {
   stolen: boolean,
   hideName: boolean,
   onSelect: (name: string) => void,
+  index?: number,
 }
 
-function Present(props: Props) {
+const Present = memo((props: Props) => {
   const dispatch = useDispatch();
+  const { app: { randomColors } } = useSelector((state: ReducerCombinedState) => state);
 
-  function selectPresent() {
-    dispatch({
+  async function selectPresent() {
+    await dispatch({
       type: selectPresentAction,
-      payload: props.name,
+      payload: {
+        name: props.name,
+        index: props.index,
+      },
     });
 
     props.onSelect(props.name);
   }
 
-  function renderStolen() {
-    if (props.stolen) {
-      return (
-        <span> - STOLEN THIS ROUND</span>
-      );
-    }
-
-    return null;
-  }
-
   function renderUnopened() {
+    const index = props.index || 1;
+    const randomColor = randomColors[index];
+
     return (
-      <div className='unopened'>
-        click
+      <div className='unopened' style={{backgroundColor: randomColor}}>
+        <span className='present-number'>{index}</span>
       </div>
     );
   }
@@ -72,6 +71,6 @@ function Present(props: Props) {
       { !props.hideName && renderClaimed() }
     </div>
   );
-}
+});
 
 export default Present;

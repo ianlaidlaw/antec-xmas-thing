@@ -4,7 +4,7 @@
 }
 
 #header-content {
-  margin-bottom: 20px;
+  margin: 40px 0 20px 0;
 }
 
 #main-content {
@@ -33,10 +33,17 @@
   font-size: large;
   padding: 4px 8px;
   cursor: pointer;
-
   margin-right: 10px;
 }
 
 #start-round-btn:disabled {
   opacity: 0.2;
+}
+
+b#active-label {
+  font-size: larger;
+}
+
+span#active-participant {
+  color: white;
 }

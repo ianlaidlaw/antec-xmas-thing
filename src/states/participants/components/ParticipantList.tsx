@@ -36,8 +36,6 @@ export function ParticipantList() {
       });
     } else {
       const stoppedIndex = glowIndex || 0;
-      // console.log(`stopped at: ${availableParticipants[stoppedIndex]}`);
-      // console.log({rRef: isRandomizingRef.current});
 
       // dispatch this stopped index to select them
       setTimeout(() => {

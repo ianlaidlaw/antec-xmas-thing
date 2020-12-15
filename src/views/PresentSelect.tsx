@@ -27,12 +27,12 @@ function PresentSelect() {
 
   function renderActiveParticipant() {
     return (
-      <span> 
-        Active Participant:&nbsp;
-        <b>
+      <b id='active-label'> 
+        Active Participant:&nbsp;&nbsp;
+        <span id='active-participant'>
           { shouldStartFinalRound ? firstParticipant : activeParticipant }
-        </b>
-      </span>
+        </span>
+      </b>
     );
   }
 
@@ -53,7 +53,7 @@ function PresentSelect() {
             disabled={disableButton} 
             onClick={onStartRoundClick}
           >
-            { shouldStartFinalRound ? 'Start Final Round' : "Who's Next?" }
+            { shouldStartFinalRound ? 'Start Final Round' : 'Who\'s Next?' }
           </button>
           { renderActiveParticipant() }
         </div>
@@ -77,7 +77,6 @@ function PresentSelect() {
 
   return (
     <div id='present-select-container'>
-      <h1>2020 Gift Exchange \O/</h1>
       { renderContent() }
     </div>
   );

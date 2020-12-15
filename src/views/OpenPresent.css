@@ -1,6 +1,6 @@
 #open-present {
   flex: 1;
-  background-color: olivedrab;
+  background-color: wheat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +16,12 @@ img.opening {
   width: 300px;
 }
 
+span#description {
+  margin: 20px 0;
+  font-size: x-large;
+  font-weight: 500;
+}
+
 button {
   background-color: black;
   color: white;
@@ -24,6 +30,4 @@ button {
   font-size: large;
   padding: 4px 8px;
   cursor: pointer;
-
-  margin-top: 20px;
 }

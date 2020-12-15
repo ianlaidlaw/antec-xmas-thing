@@ -11,9 +11,18 @@
 }
 
 .unopened {
-  background-color: tomato;
   display: flex;
   flex: 1;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+span.present-number {
+  font-size: 200%;
+  font-weight: bold;
+
 }
 
 .claimed-description {

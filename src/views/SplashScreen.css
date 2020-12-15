@@ -1,4 +1,14 @@
 #splash-screen-container {
+  display: flex;
   flex: 1;
   background-color: sandybrown;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 30px;
+}
+
+#splash-title {
+  font-size: 250%;
 }

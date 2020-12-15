@@ -7,9 +7,19 @@ import { setCurrentView } from '../states/app/actions';
 import { openPresent } from '../states/presents/actions';
 import { Views } from '../res/constants';
 
+
+const animations = [
+  require('react-reveal/Tada'),
+  require('react-reveal/Jump'),
+  require('react-reveal/Wobble'),
+  require('react-reveal/RubberBand'),
+  require('react-reveal/HeadShake'),
+  require('react-reveal/Swing'),
+];
+
 export function OpenPresent() {
   const dispatch = useDispatch();
-  const { presents: { openingPresent } } = useSelector((state: ReducerCombinedState) => state);
+  const { presents: { openingPresentIndex } } = useSelector((state: ReducerCombinedState) => state);
 
   function onContinueButtonpress() {
     dispatch({
@@ -24,16 +34,28 @@ export function OpenPresent() {
   }
 
   function renderPresent() {
+    const randomIndex = Math.floor(Math.random() * animations.length);
+    const RandomAnimationComponent = animations[randomIndex];
+
     return (
-      <div id='opening-present'>
-        <img className='opening' src={mcdonalds} />
-      </div>
+      <RandomAnimationComponent>
+        <div id='opening-present'>
+          <img className='opening' src={mcdonalds} />
+        </div>
+      </RandomAnimationComponent>
+    );
+  }
+
+  function renderDescription() {
+    return (
+      <span id='description'>Name of the Place - {openingPresentIndex}</span>
     );
   }
 
   return (
     <div id='open-present'>
       { renderPresent() }
+      { renderDescription() }
       <button onClick={onContinueButtonpress}>
         Continue
       </button>

@@ -6,6 +6,7 @@ export type reducerState = {
   availablePresents: string[],
   claimedPresents: string[],
   openingPresent: string | null,
+  openingPresentIndex: number | null,
 };
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   availablePresents: [],
   claimedPresents: [],
   openingPresent: null,
+  openingPresentIndex: null,
 };
 
 const reducer = (state: reducerState = initialState, action: ActionType) => {
@@ -27,7 +29,7 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
     case selectPresent: {
       // check if present is stolen or not
       let { availablePresents, claimedPresents } = state;
-      let presentName = action.payload;
+      let presentName = action.payload.name;
       let newAvailablePresents = [];
       let newClaimedPresents = [];
 
@@ -43,17 +45,18 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
         ...state,
         availablePresents: [...newAvailablePresents],
         claimedPresents: [...newClaimedPresents],
+        openingPresentIndex: action.payload.index,
       };
     }
     case openPresent: {
       return {
         ...state,
         openingPresent: action.payload,
-      }
-    }
+      };
+    };
     default:
       return state;
-  }
+  };
 };
 
 export default reducer;

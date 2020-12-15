@@ -25,7 +25,7 @@ export function PresentList(props: Props) {
     dispatch(selectPresentThunk(activeParticipant, present));
   }
 
-  function renderPresent(present: string) {
+  function renderPresent(present: string, index: number) {
     return (
       <Present
         key={present}
@@ -33,6 +33,7 @@ export function PresentList(props: Props) {
         onSelect={claimPresent}
         hideName
         stolen={false}
+        index={index+1}
       />
     );
   }

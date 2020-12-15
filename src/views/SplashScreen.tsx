@@ -3,23 +3,17 @@ import { useDispatch } from 'react-redux';
 // @ts-ignore
 import { FilePicker } from 'react-file-picker';
 import './SplashScreen.css';
-import { setCurrentView } from '../states/app/actions';
+import { setCurrentView, setRandomColors } from '../states/app/actions';
 import { Views } from '../res/constants.js';
 import { setInitialParticipants } from '../states/participants/actions';
 import { setInitialPresents } from '../states/presents/actions';
+import { generateRandomColors } from '../helpers/random';
 
 function SplashScreen() {
   const dispatch = useDispatch();
 
   function onGetStartedClick(file: any) {
     readFile(file);
-
-    const action = {
-      type: setCurrentView,
-      payload: Views.PresentSelect,
-    };
-
-    dispatch(action);
   }
 
   async function readFile(file: any) {
@@ -30,30 +24,39 @@ function SplashScreen() {
     const participants = lines[0].split(',');
     const presents = lines[1].split(',');
 
-    dispatch({
+    await dispatch({
+      type: setRandomColors,
+      payload: generateRandomColors(presents.length),
+    });
+
+    await dispatch({
         type: setInitialParticipants,
         payload: participants,
     });
 
-    dispatch({
+    await dispatch({
       type: setInitialPresents,
       payload: presents,
+    });
+
+    await dispatch({
+      type: setCurrentView,
+      payload: Views.PresentSelect,
     });
   }
 
   return (
     <div id='splash-screen-container'>
-      <h1>Antec Controls Gift Exchange</h1>
-      <span>Made by a cool guy</span>
-        <FilePicker
-          extensions={['txt']}
-          onChange={onGetStartedClick}
-          onError={() => {}}
-        >
-          <button>
-            Get Started
-          </button>
-        </FilePicker>
+      <h1 id='splash-title'>4th Annual Antec Controls Gift Exchange</h1>
+      <FilePicker
+        extensions={['txt']}
+        onChange={onGetStartedClick}
+        onError={() => {}}
+      >
+        <button>
+          Get Started!
+        </button>
+      </FilePicker>
     </div>
   );
 }
