@@ -21,8 +21,7 @@ export const generateUUID = () => {
 };
 
 export const getRandomRouletteDuration = () => {
-  // return (Math.floor(Math.random() * 2) + 4) * 1000; 
-  return 0;
+  return (Math.floor(Math.random() * 2) + 4) * 1000; 
 };
 
 export const shuffleOrder = (input: any[]) => {

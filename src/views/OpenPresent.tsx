@@ -4,7 +4,8 @@ import './OpenPresent.css';
 import type { ReducerCombinedState } from '../reducers';
 import mcdonalds from '../res/img/mcdonalds.png';
 import { setCurrentView } from '../states/app/actions';
-import { Views } from '../res/constants';
+import { ImageKeys, Views } from '../res/constants';
+import { getImage } from '../helpers/image';
 
 const animations = [
   require('react-reveal/Tada'),
@@ -20,7 +21,7 @@ export function OpenPresent() {
 
   setTimeout(() => {
     setFlipPresent(true);
-  }, 0);
+  }, 2000);
 
   const dispatch = useDispatch();
   const {
@@ -60,7 +61,7 @@ export function OpenPresent() {
 
     return (
       <RandomAnimationComponent>
-        <img className='opening' src={mcdonalds} />
+        <img className='opening' src={getImage(ImageKeys.Amazon)} />
       </RandomAnimationComponent>
     );
   }

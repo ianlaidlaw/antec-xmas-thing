@@ -5,3 +5,9 @@ export const Views = Object.freeze({
   FinalRound: 'final-round',
   Summary: 'summary',
 });
+
+export const ImageKeys = Object.freeze({
+  Mcdonalds: 'mcdonalds',
+  Amazon: 'amazon',
+  Steam: 'steam',
+});

@@ -9,6 +9,7 @@ import { setInitialParticipants } from '../states/participants/actions';
 import { setInitialPresents } from '../states/presents/actions';
 import { generateRandomColors } from '../helpers/random';
 import { initializePresents, initializeParticipants } from '../helpers/init';
+import splash from '../res/img/splash.png';
 
 function SplashScreen() {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ function SplashScreen() {
   return (
     <div id='splash-screen-container'>
       <h1 id='splash-title'>4th Annual Antec Controls Gift Exchange</h1>
+      <img id='splash-img' src={splash} />
       <FilePicker
         extensions={['txt']}
         onChange={onGetStartedClick}
