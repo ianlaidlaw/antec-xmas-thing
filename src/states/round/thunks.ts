@@ -1,7 +1,9 @@
-import { setAvailableParticipants, setFirstParticipant } from '../../states/participants/actions';
+import { setAvailableParticipants, setFinalRoundParticipants, setFirstParticipant } from '../../states/participants/actions';
 import { resetStolenPresents, setActiveParticipant, setIsFinalRound, setIsRandomizing, setStolenPresents } from '../../states/round/actions';
 import type { ReducerCombinedState } from '../../reducers';
 import { getRandomRouletteDuration } from '../../helpers/random';
+import { setCurrentView } from '../app/actions';
+import { Views } from '../../res/constants';
 
 export const startRoundThunk = () => {
   return async (dispatch: Function, getState: Function) => {
@@ -61,7 +63,7 @@ export const startFinalRoundThunk = () => {
     await dispatch({
       type: setStolenPresents,
       payload: firsParticipantWithSelectedPresentId?.selectedPresentId,
-    })
+    });
 
     await dispatch({
       type: setIsFinalRound,
@@ -70,6 +72,21 @@ export const startFinalRoundThunk = () => {
     await dispatch({
       type: setActiveParticipant,
       payload: firsParticipantWithSelectedPresentId,
+    });
+
+    // const sortedCompletedParticipants = [...completedParticipants].sort(
+    //   //@ts-ignore
+    //   (a, b) => a.selectedPresentId > b.selectedPresentId,
+    // );
+
+    await dispatch({
+      type: setFinalRoundParticipants,
+      payload: [...completedParticipants],
+    });
+
+    await dispatch({
+      type: setCurrentView,
+      payload: Views.FinalRound,
     });
   };
 };

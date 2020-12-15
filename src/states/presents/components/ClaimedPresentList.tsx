@@ -13,7 +13,7 @@ function ClaimedPresentList() {
 
   const { presents, round, participants } = useSelector((state: ReducerCombinedState) => state);
   const { claimedPresents } = presents;
-  const { activeParticipant, stolenPresentIds, isFinalRound } = round;
+  const { activeParticipant, stolenPresentIds } = round;
   const { completedParticipants } = participants;
 
   function stealPresent(present: PresentType) {
@@ -48,9 +48,6 @@ function ClaimedPresentList() {
 
   function renderClaimedPresent(present: PresentType) {
     let isStolenThisRound = false;
-
-    console.log({pId: activeParticipant?.selectedPresentId});
-    console.log({prr: present.id})
 
     if (stolenPresentIds.includes(present.id)) {
       isStolenThisRound = true;

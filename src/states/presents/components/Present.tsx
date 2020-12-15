@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPresent as selectPresentAction } from '../actions';
 import './Present.css';
@@ -11,10 +11,10 @@ type Props = {
   stolen: boolean,
   hideName: boolean,
   onSelect: (name: PresentType) => void,
-  present: PresentType
+  present: PresentType,
 }
 
-const Present = memo((props: Props) => {
+const Present = (props: Props) => {
   const dispatch = useDispatch();
   const { app: { randomColors } } = useSelector((state: ReducerCombinedState) => state);
 
@@ -68,6 +68,6 @@ const Present = memo((props: Props) => {
       { !props.hideName && renderClaimed() }
     </div>
   );
-});
+};
 
 export default Present;

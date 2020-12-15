@@ -1,5 +1,6 @@
 .present-description-container {
   margin: 10px;
+  text-align: center;
 }
 
 .present-container {
@@ -22,7 +23,6 @@
 span.present-number {
   font-size: 200%;
   font-weight: bold;
-
 }
 
 .claimed-description {

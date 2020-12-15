@@ -20,7 +20,7 @@ export function OpenPresent() {
 
   setTimeout(() => {
     setFlipPresent(true);
-  }, 2000);
+  }, 0);
 
   const dispatch = useDispatch();
   const {
