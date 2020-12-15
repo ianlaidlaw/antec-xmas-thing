@@ -8,6 +8,7 @@ import { Views } from '../res/constants.js';
 import { setInitialParticipants } from '../states/participants/actions';
 import { setInitialPresents } from '../states/presents/actions';
 import { generateRandomColors } from '../helpers/random';
+import { initializePresents, initializeParticipants } from '../helpers/init';
 
 function SplashScreen() {
   const dispatch = useDispatch();
@@ -21,22 +22,25 @@ function SplashScreen() {
 
     const lines = text.split('\n');
 
-    const participants = lines[0].split(',');
-    const presents = lines[1].split(',');
+    const participantNames = lines[0].split(',');
+    const presentNames = lines[1].split(',');
+
+    const participantObjects = initializeParticipants(participantNames);
+    const presentObjects = initializePresents(presentNames);
 
     await dispatch({
       type: setRandomColors,
-      payload: generateRandomColors(presents.length),
+      payload: generateRandomColors(presentNames.length),
     });
 
     await dispatch({
         type: setInitialParticipants,
-        payload: participants,
+        payload: participantObjects,
     });
 
     await dispatch({
       type: setInitialPresents,
-      payload: presents,
+      payload: presentObjects,
     });
 
     await dispatch({

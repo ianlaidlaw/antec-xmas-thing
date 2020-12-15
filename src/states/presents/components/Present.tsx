@@ -4,14 +4,16 @@ import { selectPresent as selectPresentAction } from '../actions';
 import './Present.css';
 import mcdonalds from '../../../res/img/mcdonalds.png';
 import { ReducerCombinedState } from '../../../reducers';
+import type { PresentType } from '../Types';
 
 type Props = {
   name: string,
   owner?: string | null | undefined,
   stolen: boolean,
   hideName: boolean,
-  onSelect: (name: string) => void,
+  onSelect: (name: PresentType) => void,
   index?: number,
+  present: PresentType
 }
 
 const Present = memo((props: Props) => {
@@ -21,13 +23,10 @@ const Present = memo((props: Props) => {
   async function selectPresent() {
     await dispatch({
       type: selectPresentAction,
-      payload: {
-        name: props.name,
-        index: props.index,
-      },
+      payload: props.present,
     });
 
-    props.onSelect(props.name);
+    props.onSelect(props.present);
   }
 
   function renderUnopened() {

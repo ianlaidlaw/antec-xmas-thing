@@ -1,4 +1,5 @@
-export type CompletedParticipant = {
-  name: string | null,
-  selected: string,
+export type ParticipantType = {
+  id: string,
+  name: string,
+  selectedPresentId: string | null,
 };

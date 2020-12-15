@@ -30,7 +30,7 @@ function PresentSelect() {
       <b id='active-label'> 
         Active Participant:&nbsp;&nbsp;
         <span id='active-participant'>
-          { shouldStartFinalRound ? firstParticipant : activeParticipant }
+          { shouldStartFinalRound ? firstParticipant?.name : activeParticipant?.name }
         </span>
       </b>
     );

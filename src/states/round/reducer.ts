@@ -1,4 +1,5 @@
 import { ActionType } from '../../res/types.js';
+import type { ParticipantType } from '../participants/types.js';
 import { 
   setActiveParticipant, 
   setStolenPresents, 
@@ -8,15 +9,15 @@ import {
 } from './actions';
 
 export type reducerState = {
-  activeParticipant: string | null,
-  stolenPresents: string[],
+  activeParticipant: ParticipantType | null,
+  stolenPresentIds: string[],
   isFinalRound: boolean,
   isRandomizing: boolean,
 };
 
 const initialState = {
   activeParticipant: null,
-  stolenPresents: [],
+  stolenPresentIds: [],
   isFinalRound: false,
   isRandomizing: false,
 };
@@ -32,13 +33,13 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
     case setStolenPresents: {
       return {
         ...state,
-        stolenPresents: [...state.stolenPresents, action.payload],
+        stolenPresentIds: [...state.stolenPresentIds, action.payload],
       };
     }
     case resetStolenPresents: {
       return {
         ...state,
-        stolenPresents: [],
+        stolenPresentIds: [],
       };
     }
     case setIsFinalRound: {

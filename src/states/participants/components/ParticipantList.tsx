@@ -4,6 +4,7 @@ import Participant from './Participant';
 import './ParticipantList.css';
 import type { ReducerCombinedState } from '../../../reducers.js';
 import { selectParticipantThunk } from '../../round/thunks';
+import type { ParticipantType } from '../types';
 
 export function ParticipantList() {
   const dispatch = useDispatch();
@@ -79,11 +80,11 @@ export function ParticipantList() {
     }
   }, [glowIndex]);
 
-  function renderParticipant(participant: string, index: number) {
+  function renderParticipant(participant: ParticipantType, index: number) {
     return (
-      <li key={participant} className='participant-container'>
+      <li key={participant.id} className='participant-container'>
         <Participant
-          name={participant}
+          name={participant.name}
           isHighlighted={index === glowIndex}
         />
       </li>

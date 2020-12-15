@@ -35,7 +35,7 @@ export const selectParticipantThunk = (index: number) => {
     const shouldStartFinalRound = presents.length === claimedPresents.length;
 
     const randomlySelectedParticipant = availableParticipants[index];
-    const newAvailableParticipants = availableParticipants.filter((x) => x !== randomlySelectedParticipant);
+    const newAvailableParticipants = availableParticipants.filter((x) => x.id !== randomlySelectedParticipant.id);
 
     await dispatch({
       type: setAvailableParticipants,

@@ -19,7 +19,7 @@ const animations = [
 
 export function OpenPresent() {
   const dispatch = useDispatch();
-  const { presents: { openingPresentIndex } } = useSelector((state: ReducerCombinedState) => state);
+  const state = useSelector((state: ReducerCombinedState) => state);
 
   function onContinueButtonpress() {
     dispatch({
@@ -48,7 +48,7 @@ export function OpenPresent() {
 
   function renderDescription() {
     return (
-      <span id='description'>Name of the Place - {openingPresentIndex}</span>
+      <span id='description'>Name of the Place -</span>
     );
   }
 

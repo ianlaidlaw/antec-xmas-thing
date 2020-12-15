@@ -5,13 +5,13 @@ import {
   setCompletedParticipants,
   setFirstParticipant,
 } from './actions';
-import type { CompletedParticipant } from './types.js';
+import type { ParticipantType } from './types.js';
 
 export type reducerState = {
-  participants: string[],
-  availableParticipants: string[],
-  completedParticipants: CompletedParticipant[],
-  firstParticipant: null,
+  participants: ParticipantType[],
+  availableParticipants: ParticipantType[],
+  completedParticipants: ParticipantType[],
+  firstParticipant: ParticipantType | null,
 };
 
 const initialState = {

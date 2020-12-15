@@ -1,14 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCompletedParticipants } from '../../participants/actions';
-import { resetStolenPresents, setActiveParticipant } from '../../round/actions';
 import Present from './Present';
 import './PresentList.css';
 import type { ReducerCombinedState } from '../../../reducers';
 import { selectPresentThunk } from '../thunks';
+import type { PresentType } from '../Types';
+import type { ParticipantType } from '../../participants/types';
 
 type Props = {
-  activeParticipant: string | null,
+  activeParticipant: ParticipantType | null,
 };
 
 export function PresentList(props: Props) {
@@ -20,20 +20,21 @@ export function PresentList(props: Props) {
 
   const { activeParticipant } = props;
 
-  function claimPresent(present: string) {
+  function claimPresent(present: PresentType) {
     // start the animation?
     dispatch(selectPresentThunk(activeParticipant, present));
   }
 
-  function renderPresent(present: string, index: number) {
+  function renderPresent(present: PresentType, index: number) {
     return (
       <Present
-        key={present}
-        name={present}
+        key={present.id}
+        name={present.name}
         onSelect={claimPresent}
         hideName
         stolen={false}
-        index={index+1}
+        index={present.number}
+        present={present}
       />
     );
   }

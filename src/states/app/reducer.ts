@@ -24,7 +24,7 @@ const reducer = (state: reducerState = initialState, action: ActionType) => {
       return {
         ...state,
         randomColors: [...action.payload],
-      }
+      };
     }
     default:
       return state;
