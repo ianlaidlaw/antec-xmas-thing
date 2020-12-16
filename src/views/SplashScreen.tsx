@@ -23,8 +23,8 @@ function SplashScreen() {
 
     const lines = text.split('\n');
 
-    const participantNames = lines[0].split(',');
-    const presentNames = lines[1].split(',');
+    const participantNames = lines[0].split(',').map((x: string) => x.trim());
+    const presentNames = lines[1].split(',').map((x: string) => x.trim());
 
     const participantObjects = initializeParticipants(participantNames);
     const presentObjects = initializePresents(presentNames);

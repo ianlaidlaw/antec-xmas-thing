@@ -12,11 +12,16 @@
 }
 
 #final-desc {
-  margin: 20px 0;
+  margin: 60px 0 40px 0;
+  font-size: x-large;
+  font-weight: 600;
 }
 
 #final-round-content {
   margin: 40px 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #final-round-presents-container {
@@ -24,4 +29,9 @@
   display: flex;
   flex-wrap: wrap;
   flex: 0 50%;
+  margin-bottom: 50px;
+}
+
+#end-exchange-btn {
+  width: 300px;
 }

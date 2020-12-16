@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './OpenPresent.css';
 import type { ReducerCombinedState } from '../reducers';
-import mcdonalds from '../res/img/mcdonalds.png';
 import { setCurrentView } from '../states/app/actions';
 import { ImageKeys, Views } from '../res/constants';
 import { getImage } from '../helpers/image';
@@ -61,7 +60,7 @@ export function OpenPresent() {
 
     return (
       <RandomAnimationComponent>
-        <img className='opening' src={getImage(ImageKeys.Amazon)} />
+        <img className='opening' src={getImage(openingPresent?.name)} />
       </RandomAnimationComponent>
     );
   }

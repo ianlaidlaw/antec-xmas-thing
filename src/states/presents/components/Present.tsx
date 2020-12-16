@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPresent as selectPresentAction } from '../actions';
 import './Present.css';
-import mcdonalds from '../../../res/img/mcdonalds.png';
 import { ReducerCombinedState } from '../../../reducers';
 import type { PresentType } from '../Types';
+import { getImage } from '../../../helpers/image';
 
 type Props = {
   owner?: string | null | undefined,
@@ -12,6 +12,7 @@ type Props = {
   hideName: boolean,
   onSelect: (name: PresentType) => void,
   present: PresentType,
+  hidePresentName?: boolean,
 }
 
 const Present = (props: Props) => {
@@ -41,7 +42,7 @@ const Present = (props: Props) => {
   function renderClaimed() {
     return (
       <div className='claimed-description'>
-        <span>{ props.present.name }</span>
+        {/* { !props.hidePresentName && <b className='claimed-name'>{ props.present.name }</b> } */}
         <span>{ props.owner }</span>
       </div>
     );
@@ -49,7 +50,7 @@ const Present = (props: Props) => {
 
   function renderGiftCard() {
     return (
-      <img className='claimed' src={mcdonalds} />
+      <img className='claimed' src={getImage(props.present.name)} />
     );
   }
 

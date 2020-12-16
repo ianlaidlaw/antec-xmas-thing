@@ -31,6 +31,11 @@ span.present-number {
   font-weight: 500;
 }
 
+.claimed-name {
+  max-width: 110px;
+  word-wrap: break-word;
+}
+
 img.claimed {
   width: 100px;
 }
