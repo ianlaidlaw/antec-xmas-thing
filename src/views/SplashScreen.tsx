@@ -52,17 +52,21 @@ function SplashScreen() {
 
   return (
     <div id='splash-screen-container'>
-      <h1 id='splash-title'>4th Annual Antec Controls Gift Exchange</h1>
-      <img id='splash-img' src={splash} />
+      
+      <h1 className='splash-title'> 4th Annual</h1>
+      <h1 className='splash-title'>Antec Controls</h1>
+      <h1 className='splash-title'>Gift (Card) Exchange!</h1>
+
       <FilePicker
         extensions={['txt']}
         onChange={onGetStartedClick}
         onError={() => {}}
       >
-        <button>
+        <button id='splash-btn'>
           Get Started!
         </button>
       </FilePicker>
+      <img id='splash-img' src={splash} />
     </div>
   );
 }

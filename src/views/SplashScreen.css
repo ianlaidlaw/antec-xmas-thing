@@ -9,11 +9,17 @@
   padding: 0 30px;
 }
 
-#splash-title {
-  font-size: 250%;
+#splash-img {
+  width: 300px;
+  margin-top: 150px;
 }
 
-#splash-img {
-  width: 500px;
-  margin-bottom: 30px;
+.splash-title {
+  line-height: 0.1;
+  font-size: 350%;
+  text-shadow: 1px 1px whitesmoke;
+}
+
+#splash-btn {
+  margin-top: 50px;
 }
