@@ -53,7 +53,7 @@ function SplashScreen() {
   return (
     <div id='splash-screen-container'>
       
-      <h1 className='splash-title'> 4th Annual</h1>
+      <h1 className='splash-title'>4th Annual</h1>
       <h1 className='splash-title'>Antec Controls</h1>
       <h1 className='splash-title'>Gift (Card) Exchange!</h1>
 
